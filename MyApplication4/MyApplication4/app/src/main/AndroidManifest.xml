@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Group"></activity>
+        <activity android:name=".CreateBill"></activity>
+        <activity android:name=".recyclerview.RecyclerView" />
+        <activity android:name=".Group" />
         <activity android:name=".history" />
         <activity android:name=".Friends" />
         <activity android:name=".Register" />

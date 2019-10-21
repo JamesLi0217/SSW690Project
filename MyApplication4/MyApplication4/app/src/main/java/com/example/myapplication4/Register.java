@@ -23,7 +23,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putString("info","You've successfully registered and ar able to login in now !");
+                bundle.putString("info","You've successfully registered and are able to login in now !");
                 intent.putExtras(bundle);
                 setResult(Activity.RESULT_OK,intent);
                 finish();

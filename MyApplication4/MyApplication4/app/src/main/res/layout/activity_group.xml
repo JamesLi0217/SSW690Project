@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Group">
 
+
     <TextView
         android:id="@+id/text_view1"
         android:layout_width="match_parent"

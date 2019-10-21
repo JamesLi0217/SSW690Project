@@ -24,10 +24,9 @@
     <LinearLayout
         android:id="@+id/ly_1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_below="@id/list_view"
-        >
+        android:layout_below="@id/list_view">
 
         <RelativeLayout
             android:id="@+id/rl_1"
@@ -45,21 +44,33 @@
 
         <Button
             android:id="@+id/button_3"
-            android:layout_width="299dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_margin="15dp"
             android:background="@null"
             android:text="Group 1"
             android:textAllCaps="false"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/split_line_4"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_1"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
 
 
     <LinearLayout
         android:id="@+id/ly_2"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/ly_1">
         <RelativeLayout
@@ -79,18 +90,30 @@
             android:id="@+id/button_4"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_margin="15dp"
             android:text="Group 2"
             android:textStyle="italic"
             android:background="@null"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
 
     </LinearLayout>
+    <View
+        android:id="@+id/split_line_5"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_2"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
+
 
     <LinearLayout
         android:id="@+id/ly_3"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/ly_2">
         <RelativeLayout
@@ -110,14 +133,26 @@
             android:id="@+id/button_5"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_margin="15dp"
             android:text="Group 3"
             android:textStyle="italic"
             android:background="@null"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
 
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/split_line_6"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_3"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
 
     <LinearLayout
         android:layout_width="match_parent"
