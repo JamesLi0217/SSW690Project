@@ -9,5 +9,4 @@ public interface UserDao {
 	public abstract User getUserName(String user_name);
 	public abstract User getPassword(String user_password);
 	public abstract User getUserEmail(String user_email);
-
 }
