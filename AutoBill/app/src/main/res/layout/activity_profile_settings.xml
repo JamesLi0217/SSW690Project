@@ -3,19 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
-        android:id="@+id/settings"
+        android:id="@+id/profile_settings"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:text="Settings"
+        android:text="Profile Settings"
         android:textColor="#000000"
         android:gravity="center"
         android:textSize="30sp"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/sback1"
+        android:id="@+id/pfback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_back"
@@ -24,11 +23,11 @@
 
 
     <TextView
-        android:id="@+id/account"
+        android:id="@+id/add_remark"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/settings"
-        android:text="Account"
+        android:layout_below="@+id/profile_settings"
+        android:text="Add remark"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
@@ -36,27 +35,27 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/spoint1"
+        android:id="@+id/pspoint1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/settings"
+        android:layout_below="@id/profile_settings"
         android:paddingLeft="380dp"
         android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/smiddle1"
+        android:id="@+id/psmiddle1"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/account"
+        android:layout_below="@+id/add_remark"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/general1"
+        android:id="@+id/add_label"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/smiddle1"
-        android:text="General"
+        android:layout_below="@+id/psmiddle1"
+        android:text="Add label"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
@@ -64,80 +63,80 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/spoint2"
+        android:id="@+id/pspoint2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/smiddle1"
+        android:layout_below="@id/psmiddle1"
         android:paddingLeft="380dp"
         android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/smiddle2"
+        android:id="@+id/psmiddle2"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/general1"
+        android:layout_below="@+id/add_label"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/help"
+        android:id="@+id/Addtoblacklist"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/smiddle2"
-        android:text="Help"
+        android:layout_below="@+id/psmiddle2"
+        android:text="Add to blacklist"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
         android:background="#FFFFFF"
         android:textColor="#000000"/>
 
-    <TextView
-        android:id="@+id/spoint3"
+    <CheckBox
+        android:id="@+id/pscheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/general1"
-        android:paddingLeft="380dp"
+        android:button="@drawable/bg_checkbox"
+        android:layout_below="@id/add_label"
+        android:layout_marginLeft="375dp"
         android:layout_marginTop="32dp"/>
 
     <TextView
-        android:id="@+id/fb"
+        android:id="@+id/report"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Feedback"
+        android:text="Report"
         android:textSize="30sp"
-        android:layout_below="@id/help"
+        android:layout_below="@id/Addtoblacklist"
         android:background="#FFFFFF"
         android:textColor="#000000"
         android:paddingLeft="20dp"
         android:layout_marginTop="-10dp"/>
 
     <TextView
-        android:id="@+id/spoint4"
+        android:id="@+id/pspoint3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/help"
+        android:layout_below="@id/Addtoblacklist"
         android:paddingLeft="380dp" />
 
     <TextView
-        android:id="@+id/smiddle3"
+        android:id="@+id/psmiddle3"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/fb"
+        android:layout_below="@+id/report"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/lo"
+        android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/smiddle3"
-        android:text="Log Out"
+        android:layout_below="@+id/psmiddle3"
+        android:text="Delete"
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
         android:background="#FFFFFF"
-        android:textColor="#4B00FF"/>
+        android:textColor="#FF0000"/>
 
 </RelativeLayout>

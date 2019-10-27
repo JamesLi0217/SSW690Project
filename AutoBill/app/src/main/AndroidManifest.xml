@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".Card1Activity"></activity>
+        <activity android:name=".PaymentmethodsActivity" />
+        <activity android:name=".EditprofileActivity" />
+        <activity android:name=".SidesettingActivity" />
+        <activity android:name=".ReportActivity" />
+        <activity android:name=".AddlabelActivity" />
+        <activity android:name=".AddreamrkActivity" />
+        <activity android:name=".ProfileSettingsActivity" />
+        <activity android:name=".FeedbackActivity" />
         <activity android:name=".AccountsetActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".GeneralsetActivity" />

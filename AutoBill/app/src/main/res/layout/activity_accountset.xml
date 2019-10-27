@@ -50,7 +50,7 @@
     <TextView
         android:id="@+id/amiddle1"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="10dp"
         android:layout_below="@+id/pw"
         android:background="#F9F4F4"/>
 

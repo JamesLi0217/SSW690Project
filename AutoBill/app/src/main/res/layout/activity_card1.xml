@@ -3,19 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
-        android:id="@+id/general"
+        android:id="@+id/card_info"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:text="General"
+        android:text="Card Info"
         android:textColor="#000000"
         android:gravity="center"
         android:textSize="30sp"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/gback1"
+        android:id="@+id/pfback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_back"
@@ -24,11 +23,11 @@
 
 
     <TextView
-        android:id="@+id/language"
+        android:id="@+id/boa"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/general"
-        android:text="Language"
+        android:layout_below="@+id/card_info"
+        android:text="Bank of America"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
@@ -36,27 +35,18 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/gpoint1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/general"
-        android:paddingLeft="380dp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/gmiddle1"
+        android:id="@+id/cimiddle1"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/language"
+        android:layout_below="@+id/boa"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/textsize"
+        android:id="@+id/cn"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/gmiddle1"
-        android:text="Textsize"
+        android:layout_below="@+id/cimiddle1"
+        android:text="Card Number:       ···XXXX"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
@@ -64,31 +54,23 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/gpoint2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_tback"
-        android:layout_below="@id/gmiddle1"
-        android:paddingLeft="380dp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/gmiddle2"
+        android:id="@+id/cimiddle2"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@+id/textsize"
+        android:layout_below="@+id/cn"
         android:background="#F9F4F4"/>
 
     <TextView
-        android:id="@+id/rh"
+        android:id="@+id/remove"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_below="@+id/gmiddle2"
-        android:text="Remove History"
+        android:layout_below="@+id/cimiddle2"
+        android:text="Remove"
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:textSize="30sp"
         android:background="#FFFFFF"
         android:textColor="#FF0000"/>
+
 </RelativeLayout>

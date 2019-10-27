@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mSu;
-    private Button mBtnFlink;
+    private Button mBtnFlink, mBtnGlink, mBtnTlink;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -33,6 +33,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnGlink = findViewById(R.id.g_link);
+        mBtnGlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProfileSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnTlink = findViewById(R.id.t_link);
+        mBtnTlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SidesettingActivity.class);
                 startActivity(intent);
             }
         });
