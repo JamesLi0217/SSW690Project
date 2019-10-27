@@ -25,7 +25,7 @@ public class UserController {
 		User user = new User();
 		user.setUserEmail("xinq1@gmai.com");
 		user.setPassword("123");
-		user.setUserName("qxh");
+		user.setUserName("qxhhhh");
 		userdao.createUser(user);
 	 }
 		 
