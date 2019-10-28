@@ -3,29 +3,42 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.impl.UserDaoImpl;
 import com.example.demo.model.User;
 
 @RestController
-@RequestMapping(path = "/user")
+//@RequestMapping(path = "/user")
 public class UserController {
 	
 	 @Autowired
 		private UserDaoImpl userdao;
 	 
-	 @GetMapping
+//	 @GetMapping
+	 @RequestMapping(path = "/home")
 	 public String toTest() {
 	  return "Welcome to Java Inspires...";
 	 }
 	 
-	 @GetMapping(path = "/createuser")
-	 private void createUser() 
+//	 @RequestMapping(path = "/login")
+	 @RequestMapping(path = "/login", method = RequestMethod.GET)
+	 public String toTestLogin() {
+	  return "Sucess login...";
+	 }
+	 
+	 @RequestMapping(path = "/loginerror")
+	 public String toTestLoginError() {
+	  return "fail to login...";
+	 }
+	 
+	 @GetMapping(path = "/register")
+	 private void register() 
 	 {
 		User user = new User();
-		user.setUserEmail("xinq1@gmai.com");
+		user.setUserEmail("124qq.edu");
 		user.setPassword("123");
-		user.setUserName("qxhhhh");
+		user.setUserName("lpz111");
 		userdao.createUser(user);
 	 }
 		 
