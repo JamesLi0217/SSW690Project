@@ -21,6 +21,11 @@ public class UserController {
 	  return "Welcome to Java Inspires...";
 	 }
 	 
+	 @RequestMapping(path = "/")
+	 public String defaultPage() {
+	  return "Welcome to default page ...";
+	 }
+	 
 //	 @RequestMapping(path = "/login")
 	 @RequestMapping(path = "/login", method = RequestMethod.GET)
 	 public String toTestLogin() {
@@ -32,14 +37,20 @@ public class UserController {
 	  return "fail to login...";
 	 }
 	 
-	 @GetMapping(path = "/register")
+	 @RequestMapping(path = "/register", method = RequestMethod.GET)
 	 private void register() 
 	 {
 		User user = new User();
 		user.setUserEmail("124qq.edu");
 		user.setPassword("123");
-		user.setUserName("lpz111");
+		user.setUserName("lpz12");
 		userdao.createUser(user);
+	 }
+	 
+	 @RequestMapping(path = "/getUser")
+	 private String getUserName() {
+		return userdao.getUser(19).user_name;
+		 
 	 }
 		 
 }
