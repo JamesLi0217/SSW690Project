@@ -70,5 +70,12 @@ public class UserController {
 		 int id_num = Integer.parseInt(id);
 		 return userdao.getUserEmail(id_num);
 	 }
+	 
+	// for search id by name
+	 @RequestMapping(path = "/getUserID/{name}")
+	 private Integer getUserID(@PathVariable("name") String name) {
+//		 int id_num = Integer.parseInt(id);
+		 return userdao.getUserID(name);
+	 }
 		 
 }

@@ -69,9 +69,17 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public String getUserEmail(int user_id) {
 		// TODO Auto-generated method stub
-		String GET_USER_NAME_SQL = "select user_email from users where user_id=?";
+		String GET_USER_Eamil_SQL = "select user_email from users where user_id=?";
 		System.out.println("get user email success");
-		return jdbcTemplate.queryForObject(GET_USER_NAME_SQL, String.class, user_id);
+		return jdbcTemplate.queryForObject(GET_USER_Eamil_SQL, String.class, user_id);
+	}
+
+	@Override
+	public Integer getUserID(String user_name) {
+		// TODO Auto-generated method stub
+		String GET_USER_ID_SQL = "select user_id from users where user_id=?";
+		System.out.println("get user ID success");
+		return jdbcTemplate.queryForObject(GET_USER_ID_SQL, Integer.class, user_name);
 	}
 
 

@@ -11,4 +11,6 @@ public interface UserDao {
 //	public abstract User getPassword(String user_password);
 	public abstract String getUserEmail(int user_id);
 	public abstract String getUserName(int user_id);
+	public abstract Integer getUserID(String user_name);
+//	public abstract void uploadPicture();
 }
