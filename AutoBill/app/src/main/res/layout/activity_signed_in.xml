@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignedIn">
+
+    <Button
+        android:id="@+id/signedin_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/icons8_menu"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"/>
+
+    <SearchView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/signedin_button"
+        android:layout_marginTop="5dp"
+        android:searchHintIcon="@drawable/icons8_search" />
+
+
+    <LinearLayout
+        android:id="@+id/ly_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/sv">
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icons8_group"
+                android:layout_marginLeft="20dp"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/button_3"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:text="Group 1"
+            android:textAllCaps="false"
+            android:textStyle="italic"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/split_line_4"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_1"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
+
+
+    <LinearLayout
+        android:id="@+id/ly_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/ly_1">
+        <RelativeLayout
+            android:id="@+id/rl_2"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icons8_group"
+                android:layout_marginLeft="20dp"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_4"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:text="Group 2"
+            android:textStyle="italic"
+            android:background="@null"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/split_line_5"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_2"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
+
+
+    <LinearLayout
+        android:id="@+id/ly_3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/ly_2">
+        <RelativeLayout
+            android:id="@+id/rl_3"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icons8_group"
+                android:layout_marginLeft="20dp"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_5"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:text="Group 3"
+            android:textStyle="italic"
+            android:background="@null"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            tools:ignore="RtlCompat"
+            android:paddingLeft="20dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/split_line_6"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@id/ly_3"
+        android:layout_marginTop="2dp"
+        android:background="#DDDDDD"  />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_6"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@null"
+        android:drawableTop="@drawable/icons8_fenzu"
+        android:text="Group"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:enabled="false"/>
+
+    <Button
+        android:id="@+id/button_7"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/button_6"
+        android:background="@null"
+        android:drawableTop="@drawable/icons8_friends"
+        android:text="Friends"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_8"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        android:layout_toRightOf="@id/button_7"
+        android:background="@null"
+        android:drawableTop="@drawable/icons8_history"
+        android:text="History"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
