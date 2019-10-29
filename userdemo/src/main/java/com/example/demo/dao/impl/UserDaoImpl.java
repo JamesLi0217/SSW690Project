@@ -3,8 +3,11 @@ package com.example.demo.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.activation.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -12,11 +15,17 @@ import com.example.demo.dao.UserDao;
 import com.example.demo.model.User;
 
 @Repository
+//public class UserDaoImpl extends JdbcDaoSupport implements UserDao
 public class UserDaoImpl implements UserDao
 {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate( (javax.sql.DataSource) dataSource);
+    }
 
 	@Override
 	public void createUser(User user)
@@ -34,8 +43,7 @@ public class UserDaoImpl implements UserDao
 	public User getUser(int user_id) {
 		// TODO Auto-generated method stub
 		String GET_USER_SQL = "select * from user where user_id=?";
-//		int update = jdbcTemplate.update(GET_USER_SQL, user_id);
-		
+		System.out.println("success");
 		return jdbcTemplate.queryForObject(GET_USER_SQL, new UserRowMapper(), user_id);
 	}
 	class UserRowMapper implements RowMapper<User> {
@@ -44,40 +52,27 @@ public class UserDaoImpl implements UserDao
 		user.setId(rs.getInt("user_id"));
 		user.setUserName(rs.getString("user_name"));
 		user.setPassword(rs.getString("user_password"));
+		System.out.println(user.user_name);
 		return user;
 		}
 	}
-	
-	
-	
+	@Override
+	public String getUserName(int user_id) {
+		// TODO Auto-generated method stub
+		String GET_USER_NAME_SQL = "select user_name from users where user_id=?";
+		System.out.println("get user name success");
+		return jdbcTemplate.queryForObject(GET_USER_NAME_SQL, String.class, user_id);
+//		return this.getJdbcTemplate().queryForObject(GET_USER_NAME_SQL, String.class, user_id);
+//		return null;
+	}
 
-//	@Override
-//	public User getID(int user_id)
-//	{
-//		// TODO Auto-generated method stub
-//		
-//		return null;
-//	}
-//
-//	@Override
-//	public User getUserName(String user_name)
-//	{
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public User getPassword(String user_password)
-//	{
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public User getUserEmail(String user_email)
-//	{
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public String getUserEmail(int user_id) {
+		// TODO Auto-generated method stub
+		String GET_USER_NAME_SQL = "select user_email from users where user_id=?";
+		System.out.println("get user email success");
+		return jdbcTemplate.queryForObject(GET_USER_NAME_SQL, String.class, user_id);
+	}
+
 
 }
