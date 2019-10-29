@@ -31,10 +31,12 @@ public class UserDaoImpl implements UserDao
 	public void createUser(User user)
 	{
 		String CREATE_USER_SQL = "INSERT INTO users(user_name,user_password, user_email,  user_start_date) VALUES (?,?,?,?)";
+
 		int update = jdbcTemplate.update(CREATE_USER_SQL, user.getUserName(), user.getPassword(), user.getUserEmail(),
 				1995 - 7 - 11);
 		if (update == 1)
 		{
+
 			System.out.println("User is create..");
 		}
 	}

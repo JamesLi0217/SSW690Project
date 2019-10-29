@@ -19,8 +19,10 @@ public class UserController {
 	private UserDaoImpl userdao;
 	 @Autowired private DataSource dataSource;
 	 
+
 	 @RequestMapping(path = "/home")
-	 public String toTest() {
+	 @GetMapping()
+  public String toTest() {
 	  return "Welcome to Java Inspires...";
 	 }
 	 
@@ -43,9 +45,10 @@ public class UserController {
 	 private void register() 
 	 {
 		User user = new User();
-		user.setUserEmail("124qq.edu");
-		user.setPassword("123");
-		user.setUserName("lpz12");
+
+		user.setUserEmail("tc1@gmai.com");
+		user.setPassword("55553");
+		user.setUserName("tc");
 		userdao.createUser(user);
 	 }
 	 
