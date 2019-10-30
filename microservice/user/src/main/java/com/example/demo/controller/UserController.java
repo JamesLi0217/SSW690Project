@@ -41,14 +41,14 @@ public class UserController {
 	  return "fail to login...";
 	 }
 	 
-	 @RequestMapping(path = "/register", method = RequestMethod.GET)
-	 private void register() 
+	 @RequestMapping(path = "/register/{name}/{password}/{email}", method = RequestMethod.GET)
+	 private void register(@PathVariable("name") String name, @PathVariable("password") String password, @PathVariable("email") String email) 
 	 {
 		User user = new User();
 
-		user.setUserEmail("tc1@gmai.com");
-		user.setPassword("55553");
-		user.setUserName("tc");
+		user.setUserEmail(email);
+		user.setPassword(password);
+		user.setUserName(name);
 		userdao.createUser(user);
 	 }
 	 

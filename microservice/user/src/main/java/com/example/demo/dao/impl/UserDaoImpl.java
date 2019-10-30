@@ -79,7 +79,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public Integer getUserID(String user_name) {
 		// TODO Auto-generated method stub
-		String GET_USER_ID_SQL = "select user_id from users where user_id=?";
+		String GET_USER_ID_SQL = "select user_id from users where user_name=?";
 		System.out.println("get user ID success");
 		return jdbcTemplate.queryForObject(GET_USER_ID_SQL, Integer.class, user_name);
 	}
