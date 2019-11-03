@@ -12,20 +12,40 @@ import java.util.List;
  * @author sean
  */
 public class Group {
-    private final int group_id;
+    private int group_id;
     private String group_name = "New Group";
     private float total_amount = 0;
     private int check_state_id = -1;
     private List<Integer> bills_list;
     private List<Integer> users_list;
+    
+    public Group(List<Integer> users_list, String group_name) {
+        this.group_id = -1;
+        this.group_name = group_name;
+        this.users_list = users_list;
+        
+    }
 
     public Group(int group_id, String group_name) {
         this.group_id = group_id;
         this.group_name = group_name;
     }
 
+    public Group(int group_id, String group_name, float total_amount, int check_state_id, List<Integer> bills_list, List<Integer> users_list) {
+        this.group_id = group_id;
+        this.group_name = group_name;
+        this.total_amount = total_amount;
+        this.check_state_id = check_state_id;
+        this.bills_list = bills_list;
+        this.users_list = users_list;
+    }
+
     public int getGroup_id() {
         return group_id;
+    }
+    
+    public void setGroup_id(int group_id) {
+        this.group_id = group_id;
     }
 
     public String getGroup_name() {

@@ -12,15 +12,13 @@ import com.example.demo.model.Group;
  * @author sean
  */
 public interface GroupDao {
-    public abstract void createGroup(Group group);
+    public abstract boolean createGroup(Group group);
     
+    public abstract String getGroupName(int group_id);
     public abstract Group getGroup(int group_id);
     
     /* checkout function */
-    public abstract void startToCheckout(int group_id, int user_id);
-    public abstract void comfirmCheckout(int group_id, int user_id);
-    public abstract void cancelCheckout(int group_id, int user_id);
-    public abstract void checkout(int group_id);
+    public abstract int checkoutComfirm(int groupId, int userId, int state);
     
     /* Group delete function */
     public abstract void startToDeleteGroup(int group_id, int user_id);
