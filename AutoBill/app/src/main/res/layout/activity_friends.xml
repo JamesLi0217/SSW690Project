@@ -154,6 +154,20 @@
         android:layout_below="@id/Friend_ly_friends_3"
         android:layout_marginTop="2dp"
         android:background="#DDDDDD"  />
+    <Button
+        android:id="@+id/test"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/split_line_3"
+        android:text="test"/>
+
+    <TextView
+        android:id="@+id/friends_list"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/test"
+        android:text="Result"
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

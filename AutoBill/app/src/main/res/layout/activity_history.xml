@@ -191,36 +191,6 @@
         android:layout_marginTop="2dp"
         android:background="#DDDDDD"  />
 
-    <RelativeLayout
-        android:id="@id/ly_1"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/H_text_view_2"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:text="Total :"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="30dp"
-            android:paddingLeft="20dp"/>
-
-        <TextView
-            android:id="@+id/text_view_3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="-300dp"
-            android:layout_toRightOf="@id/H_text_view_2"
-            android:paddingTop="30dp"
-            android:text="366.60"
-            android:textColor="#3F51B5"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
+    
 
 </RelativeLayout>

@@ -4,14 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.autobill.model.User;
+
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mSu;
-    private Button mBtnFlink, mBtnGlink, mBtnTlink,mBtnSignIn;
+    private Button mSu;
+    private Button mBtnSignIn;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -28,33 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mBtnFlink = findViewById(R.id.f_link);
-        mBtnFlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        mBtnGlink = findViewById(R.id.g_link);
-        mBtnGlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProfileSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        mBtnTlink = findViewById(R.id.t_link);
-        mBtnTlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SidesettingActivity.class);
-                startActivity(intent);
-            }
-        });
-
         mBtnSignIn = findViewById(R.id.si);
         mBtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,5 +48,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+    private void postDataWithParam(){
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody
+                .Builder()
+                .add("id","1")
+                .build();
+        Request request = new Request
+                .Builder()
+                .post(formBody)
+                .url("http://localhost:8083/findAllFriends")
+                .build();
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            String result = response.body().string();
+            Log.d("androidxx.cn",result);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
     }
 }

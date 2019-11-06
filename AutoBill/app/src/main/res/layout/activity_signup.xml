@@ -83,7 +83,8 @@
         android:drawablePadding="18dp"
         android:textSize="20sp"
         android:maxLines="1"
-        android:drawableLeft="@drawable/icon_email"/>
+        android:drawableLeft="@drawable/icon_email"
+        android:inputType="textWebEmailAddress"/>
 
     <EditText
         android:id="@+id/phone"

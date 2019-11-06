@@ -12,7 +12,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private Button mBtnBack;
     private Button mBtnSignUp;
-    private  Button mBtnNeedHelp;
+    private Button mBtnNeedHelp;
 
 
     @Override
