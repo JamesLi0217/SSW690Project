@@ -5,74 +5,89 @@
  */
 package com.example.demo.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
  * @author sean
  */
 public class Group {
-    private final int group_id;
-    private String group_name = "New Group";
-    private float total_amount = 0;
-    private int check_state_id = -1;
-    private List<Integer> bills_list;
-    private List<Integer> users_list;
-
-    public Group(int group_id, String group_name) {
-        this.group_id = group_id;
-        this.group_name = group_name;
-    }
-
-    public int getGroup_id() {
-        return group_id;
-    }
-
-    public String getGroup_name() {
-        return group_name;
-    }
-
-    public void setGroup_name(String group_name) {
-        this.group_name = group_name;
-    }
-
-    public float getTotal_amount() {
-        return total_amount;
-    }
-
-    public void setTotal_amount(float total_amount) {
-        this.total_amount = total_amount;
-    }
-
-    public int getCheckState_id() {
-        return check_state_id;
-    }
-
-    public void setCheckState_id(int state_id) {
-        this.check_state_id = state_id;
-    }
-
-    public List<Integer> getBills_list() {
-        return bills_list;
-    }
-
-    public void addBillToBills_list(int bill_id) {
-        this.bills_list.add(bill_id);
-    }
-
-    public void removeBillFromBills_list(int bill_id) {
-        this.bills_list.remove(bill_id);
-    }
+    private int groupId;
+    private String groupName = "New Group";
+    private float totalAmount = 0;
+    private int checkStateId = -1;
+    private int[] billsList;
+    private int[] usersList;
     
-    public List<Integer> getUsers_list() {
-        return users_list;
+    public Group(@JsonProperty("usersList") int[] usersList, 
+                 @JsonProperty("groupName") String groupName,
+                 @JsonProperty("groupId") int groupId) {
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.usersList = usersList;
+        
     }
 
-    public void addUserToUsers_list(int user_id) {
-        this.users_list.add(user_id);
+    public Group(int groupId, String groupName) {
+        this.groupId = groupId;
+        this.groupName = groupName;
     }
-    
-    public void removeUserToUsers_list(int user_id) {
-        this.users_list.remove(user_id);
+
+    public Group(int groupId, String groupName, float totalAmount, int checkStateId, int[] billsList, int[] usersList) {
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.totalAmount = totalAmount;
+        this.checkStateId = checkStateId;
+        this.billsList = billsList;
+        this.usersList = usersList;
     }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getCheckStateId() {
+        return checkStateId;
+    }
+
+    public void setCheckStateId(int checkStateId) {
+        this.checkStateId = checkStateId;
+    }
+
+    public int[] getBillsList() {
+        return billsList;
+    }
+
+    public void setBillsList(int[] billsList) {
+        this.billsList = billsList;
+    }
+
+    public int[] getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(int[] usersList) {
+        this.usersList = usersList;
+    }
+
 }

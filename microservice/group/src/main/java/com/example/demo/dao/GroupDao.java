@@ -7,25 +7,31 @@ package com.example.demo.dao;
 
 import com.example.demo.model.Group;
 
+
 /**
  *
  * @author sean
  */
 public interface GroupDao {
-    public abstract void createGroup(Group group);
+    public abstract int createGroup(Group group);
     
-    public abstract Group getGroup(int group_id);
+    public abstract String getGroupName(int groupId);
+    public abstract Group getGroup(int groupId);
     
     /* checkout function */
-    public abstract void startToCheckout(int group_id, int user_id);
-    public abstract void comfirmCheckout(int group_id, int user_id);
-    public abstract void cancelCheckout(int group_id, int user_id);
-    public abstract void checkout(int group_id);
+    public abstract int checkoutComfirm(int groupId, int userId);
+    public abstract int getTotalCheckoutState(int groupId);
     
     /* Group delete function */
-    public abstract void startToDeleteGroup(int group_id, int user_id);
-    public abstract void comfirmDeleteGroup(int group_id, int user_id);
-    public abstract void cancelDeleteGroup(int group_id, int user_id);
-    public abstract void deleteGroup(int group_id);
+
+    public int addGroupMember(int groupId, int[] usersList);
+
+    public int getUserCheckoutComfirm(int groupId, int userId);
+
+    public void checkout(int groupId);
+
+    public void cancelCheckoutComfirm(int groupId, int userId);
+
+    public int getUserCancelCheckout(int groupId);
     
 }
