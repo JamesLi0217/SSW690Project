@@ -5,11 +5,28 @@
  */
 package com.example.bill.dao;
 
+import com.example.bill.model.Bill;
+
 /**
  *
  * @author sean
  */
 public interface BillDao {
-    float getAmount(int billId);
-    int 
+
+    public Bill getBillGeneral(int billId);
+
+    public int createBill(Bill bill);
+
+    public Bill getBill(int billId);
+
+    public int getTotalAddState(int billId);
+
+    public int billAddComfirm(int billId, int userId);
+
+    public int getUserAddComfirm(int billId, int userId);
+
+    public int cancelAddComfirm(int billId, int userId);
+
+    public int getUserCancelAdd(int billId);
+    
 }
