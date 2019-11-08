@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.controller;
+package com.example.group.controller;
 
-import com.example.demo.model.Group;
-import com.example.demo.service.GroupService;
+import com.example.group.model.Group;
+import com.example.group.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
