@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.service;
+package com.example.group.service;
 
 
-import com.example.demo.dao.GroupDao;
-import com.example.demo.model.Group;
+import com.example.group.dao.GroupDao;
+import com.example.group.model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

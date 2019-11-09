@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.dao.impl;
+package com.example.group.dao.impl;
 
-import com.example.demo.dao.GroupDao;
-import com.example.demo.model.Group;
+import com.example.group.dao.GroupDao;
+import com.example.group.model.Group;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +50,27 @@ public class MySQLDatabaseServer implements GroupDao {
 
     @Override
     public Group getGroup(int groupId) {
+        // get name, amount, checkStateId
         String GET_GROUP_PROFILE = "SELECT * FROM autobill_db.groups WHERE group_id = ?";
         List<Map<String, Object>> tmp = jdbcTemplate.queryForList(GET_GROUP_PROFILE, groupId);
         Map<String, Object> result = tmp.get(0);
         String groupName = result.get("group_name").toString();
         float totalAmount = Float.parseFloat(result.get("total_amount").toString());
         int checkStateId = Integer.parseInt(result.get("check_state_id").toString());
-        int[] billsList = new int[0];
+        // get bills
         String GET_BILLS_LIST = "SELECT bill_id FROM autobill_db.group_bill_list WHERE group_id = ?";
         tmp = jdbcTemplate.queryForList(GET_BILLS_LIST, groupId);
+        int[] billsList = new int[tmp.size()];
+        int i = 0;
+        for (Map<String, Object> row : tmp) {
+            billsList[i] = Integer.parseInt(row.get("bill_id").toString());
+            i ++;
+        }
+        // get users
         String GET_USERS_LIST = "SELECT user_id FROM autobill_db.group_user_list WHERE group_id = ?";
         tmp = jdbcTemplate.queryForList(GET_USERS_LIST, groupId);
         int[] usersList = new int[tmp.size()];
-        int i = 0;
+        i = 0;
         for (Map<String, Object> row : tmp) {
             usersList[i] = Integer.parseInt(row.get("user_id").toString());
             i ++;
@@ -94,6 +102,7 @@ public class MySQLDatabaseServer implements GroupDao {
         if(jdbcTemplate.queryForObject(GET_GROUP_TOTAL_CHECKOUT_COMFIRM_SQL, Integer.class, groupId) == 2) {
             return 2;
         }
+        // check have everyone has comfirm
         String GET_USERS_LIST = "SELECT check_state_id FROM autobill_db.group_user_list WHERE group_id = ?";
         List<Map<String, Object>> result = jdbcTemplate.queryForList(GET_USERS_LIST, groupId);
         int finish = 1;
@@ -103,6 +112,9 @@ public class MySQLDatabaseServer implements GroupDao {
                 break;
             }
         }
+        // if everyone comfirm, change the checkout state and everyone's comfirm state
+        // !!!!!!!!!!!!!!!
+        // !!!!!! change all the bills' state which have been checked out
         if(finish == 1) {
             String CHECKOUT_COMFIRM_SQL = "UPDATE autobill_db.group_user_list SET check_state_id = 2 WHERE group_id = ?";
             int update = jdbcTemplate.update(CHECKOUT_COMFIRM_SQL, groupId);

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.dao;
+package com.example.bill.dao;
 
-import com.example.demo.model.Group;
+import com.example.bill.model.Group;
 
 
 /**
