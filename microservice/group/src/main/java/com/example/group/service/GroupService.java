@@ -31,6 +31,7 @@ public class GroupService {
     }
 
     public String getGroupName(int groupId) {
+    	System.out.print("wudi");
         return groupDao.getGroupName(groupId);
     }
 

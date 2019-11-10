@@ -30,6 +30,13 @@ public class GroupController {
         this.groupService = groupService;
     }
     
+   
+    @RequestMapping
+    public String hello(String name){
+        return "Hello " + name + "!";
+    }
+ 
+    
     @PostMapping
     public void createGroup(@RequestBody Group group) {
         groupService.createGroup(group);
