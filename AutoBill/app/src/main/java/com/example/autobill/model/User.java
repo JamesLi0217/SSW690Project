@@ -10,13 +10,14 @@ public class User{
 
     public User() {
         this.user_id = 3;
+        this.user_name= "jack";
         groupList = new int[2];
         groupList[0] = 3;
         groupList[1] = 6;
 
     }
 
-    public int[] getGgroupList() {
+    public int[] getGroupList() {
         return this.groupList;
     }
 

@@ -24,17 +24,13 @@
         android:searchHintIcon="@drawable/icons8_search" />
 
 
-    <LinearLayout
-        android:id="@+id/ly_1"
+
+    <TextView
+        android:id="@+id/textview"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/sv">
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="650dp"/>
-    </LinearLayout>
+        android:layout_height="500dp"
+        android:layout_below="@+id/sv"/>
+
 
 
     <Button
@@ -50,8 +46,7 @@
         android:text="Group"
         android:textAllCaps="false"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:enabled="false"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button_7"

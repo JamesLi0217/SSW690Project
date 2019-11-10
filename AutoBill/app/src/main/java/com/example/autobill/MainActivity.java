@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import com.example.autobill.model.User;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mSu;
     private Button mBtnSignIn;
+    private TextView result;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mBtnSignIn = findViewById(R.id.si);
+        result = findViewById(R.id.textview);
+        //检查用户名密码，如果正确，则成功登录。
         mBtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,25 +56,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void postDataWithParam(){
-        OkHttpClient okHttpClient = new OkHttpClient();
-        FormBody formBody = new FormBody
-                .Builder()
-                .add("id","1")
-                .build();
-        Request request = new Request
-                .Builder()
-                .post(formBody)
-                .url("http://localhost:8083/findAllFriends")
-                .build();
-        try {
-            Response response = okHttpClient.newCall(request).execute();
-            String result = response.body().string();
-            Log.d("androidxx.cn",result);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
 
+    private void getGroupList(){
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+        final Request request = new Request.Builder()
+                .url("http://10.0.2.2:8084/group/jack")//in this step, it should get the user name first.
+                .get()
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("Result",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                result.setText(response.body().string());
+            }
+        });
 
     }
+
 }
