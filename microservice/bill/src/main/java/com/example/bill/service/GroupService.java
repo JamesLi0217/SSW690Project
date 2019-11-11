@@ -69,5 +69,9 @@ public class GroupService {
     public int getUserCancelCheckout(int groupId) {
         return groupDao.getUserCancelCheckout(groupId);
     }
+
+    public float getIndivitualTotalBalance(int groupId, int userId) {
+        return groupDao.getIndivitualTotalBalance(groupId, userId);
+    }
     
 }

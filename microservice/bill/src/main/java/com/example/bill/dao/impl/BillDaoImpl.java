@@ -38,8 +38,8 @@ public class BillDaoImpl implements BillDao {
 
     @Override
     public int createBill(Bill bill) {
-        String CREATE_BILL_SQL = "INSERT INTO autobill_db.bills(bill_name, bill_amount, bill_date, bill_receipt, bill_description) VALUES (?, ?, ?, ?, ?)";
-        int update = jdbcTemplate.update(CREATE_BILL_SQL, bill.getBillName(), bill.getAmount(), bill.getDate(), bill.getReceiptImg(), bill.getDescription());
+        String CREATE_BILL_SQL = "INSERT INTO autobill_db.bills(bill_name, bill_amount, bill_date, bill_receipt, bill_description, bill_participant) VALUES (?, ?, ?, ?, ?, ?)";
+        int update = jdbcTemplate.update(CREATE_BILL_SQL, bill.getBillName(), bill.getAmount(), bill.getDate(), bill.getReceiptImg(), bill.getDescription(), bill.getUsersList().length);
         if(update != 1) {
             return 0;
         }
@@ -142,9 +142,4 @@ public class BillDaoImpl implements BillDao {
         String GET_CANCEL_USER_SQL = "SELECT user_id FROM autobill_db.bill_user_list WHERE bill_id = ? and add_state_id = -1";
         return jdbcTemplate.queryForObject(GET_CANCEL_USER_SQL, Integer.class, billId);
     }
-
-
-    
-    
-    
 }

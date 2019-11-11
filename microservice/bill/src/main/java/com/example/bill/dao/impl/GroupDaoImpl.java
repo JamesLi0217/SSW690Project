@@ -112,7 +112,7 @@ public class GroupDaoImpl implements GroupDao {
                 break;
             }
         }
-        // if everyone comfirm, change the checkout state and everyone's comfirm state
+        // if everyone comfirm, change the checkout state and everyone's comfirm state, all the bills have been checked out state change to 3
         // !!!!!!!!!!!!!!!
         // !!!!!! change all the bills' state which have been checked out
         if(finish == 1) {
@@ -120,6 +120,8 @@ public class GroupDaoImpl implements GroupDao {
             int update = jdbcTemplate.update(CHECKOUT_COMFIRM_SQL, groupId);
             String TOTAL_CHECKOUT_COMFIRM_SQL = "UPDATE autobill_db.groups SET check_state_id = 2 WHERE group_id = ?";
             update = jdbcTemplate.update(TOTAL_CHECKOUT_COMFIRM_SQL, groupId);
+            String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 3 WHERE group_id = ? AND total_add_state_id = 2";
+            update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
         }
         return  jdbcTemplate.queryForObject(GET_GROUP_TOTAL_CHECKOUT_COMFIRM_SQL, Integer.class, groupId);
     }
@@ -136,6 +138,8 @@ public class GroupDaoImpl implements GroupDao {
         int update = jdbcTemplate.update(CHECKOUT_COMFIRM_SQL, groupId);
         String TOTAL_CHECKOUT_COMFIRM_SQL = "UPDATE autobill_db.groups SET check_state_id = 0 WHERE group_id = ?";
         update = jdbcTemplate.update(TOTAL_CHECKOUT_COMFIRM_SQL, groupId);
+        String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 2 WHERE group_id = ? AND total_add_state_id = 1";
+        update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
     }
 
     @Override
@@ -146,13 +150,40 @@ public class GroupDaoImpl implements GroupDao {
         update = jdbcTemplate.update(CHECKOUT_CANCEL_SQL, groupId, userId);
         String TOTAL_CHECKOUT_COMFIRM_SQL = "UPDATE autobill_db.groups SET check_state_id = 2 WHERE group_id = ?";
         update = jdbcTemplate.update(TOTAL_CHECKOUT_COMFIRM_SQL, groupId);
+        String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 1 WHERE group_id = ? AND total_add_state_id = 2";
+        update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
     }
 
     @Override
     public int getUserCancelCheckout(int groupId) {
-        String GET_CANCEL_USER_SQL = "SELECT user_id FROM autobill_db.group_user_list WHERE group_id = ? and check_state_id = -1";
+        String GET_CANCEL_USER_SQL = "SELECT user_id FROM autobill_db.group_user_list "
+                + "WHERE group_id = ? "
+                + "AND check_state_id = -1";
         return jdbcTemplate.queryForObject(GET_CANCEL_USER_SQL, Integer.class, groupId);
         
+    }
+
+    @Override
+    public float getIndivitualTotalBalance(int groupId, int userId) {
+        String GET_BILL_LIST_SQL = "SELECT gb.bill_id "
+                + "FROM autobill_db.group_bill_list AS gb "
+                + "JOIN bill_user_list AS ul "
+                + "ON gb.bill_id = ul.bill_id "
+                + "WHERE group_id = ? AND user_id = ? "
+                + "AND (total_add_state_id = 1 OR total_add_state_id = 2)";
+        List<Map<String, Object>> billList = jdbcTemplate.queryForList(GET_BILL_LIST_SQL, groupId, userId);
+        float balance = 0;
+        for(Map<String, Object> row : billList) {
+            int billId = Integer.parseInt(row.get("bill_id").toString());
+            String GET_BILL_AMOUnT = "";
+            String GET_USER_LIST_SQL = "SELECT bill_amount, bill_participant FROM autobill_db.bills WHERE bill_id = ?";
+            List<Map<String, Object>> list = jdbcTemplate.queryForList(GET_USER_LIST_SQL, billId);
+            Map<String, Object> result = list.get(0);
+            float billAmount = Float.parseFloat(result.get("bill_amount").toString());
+            int size = Integer.parseInt(result.get("bill_participant").toString());
+            balance += billAmount / size;
+        }
+        return balance;
     }
     
     
