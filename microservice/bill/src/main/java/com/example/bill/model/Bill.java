@@ -21,6 +21,7 @@ public class Bill {
     private String receiptImg;
     private int[] usersList;
     private int addState;
+    private int payerId;
 
     public Bill(int billId, String billName, float billAmount, int billDate, int state) {
         this.billId = billId;
@@ -37,7 +38,8 @@ public class Bill {
             @JsonProperty("billName") String billName, 
             @JsonProperty("description") String description, 
             @JsonProperty("receipt") String receiptImg, 
-            @JsonProperty("usersList") int[] usersList) {
+            @JsonProperty("usersList") int[] usersList,
+            @JsonProperty("payerId") int payerId) {
         this.groupId = groupId;
         this.date = date;
         this.amount = amount;
@@ -45,9 +47,10 @@ public class Bill {
         this.description = description;
         this.receiptImg = receiptImg;
         this.usersList = usersList;
+        this.payerId = payerId;
     }
 
-    public Bill(int billId, String billName, float billAmount, int billDate, int state, String billReceipt, String billDesc, int[] userList) {
+    public Bill(int billId, String billName, float billAmount, int billDate, int state, String billReceipt, String billDesc, int[] userList, int payerId) {
         this.billId = billId;
         this.billName = billName;
         this.date = billDate;
@@ -56,6 +59,7 @@ public class Bill {
         this.receiptImg = billReceipt;
         this.usersList = userList;
         this.addState = state;
+        this.payerId = payerId;
     }
 
     public int getBillId() {
@@ -128,6 +132,14 @@ public class Bill {
 
     public void setAddState(int addState) {
         this.addState = addState;
+    }
+
+    public int getPayerId() {
+        return payerId;
+    }
+
+    public void setPayerId(int payerId) {
+        this.payerId = payerId;
     }
     
     

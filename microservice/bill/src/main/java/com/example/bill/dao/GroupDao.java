@@ -35,5 +35,7 @@ public interface GroupDao {
     public int getUserCancelCheckout(int groupId);
 
     public float getIndivitualTotalBalance(int groupId, int userId);
+
+    public String[] getTranList(Group group);
     
 }

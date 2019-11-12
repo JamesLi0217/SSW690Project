@@ -58,7 +58,7 @@ public class GroupService {
     public String[] checkout(int groupId) {
         Group group = groupDao.getGroup(groupId);
         groupDao.checkout(groupId);
-        return null;
+        return groupDao.getTranList(group);
     }
 
     public int cancelCheckoutComfirm(int groupId, int userId) {

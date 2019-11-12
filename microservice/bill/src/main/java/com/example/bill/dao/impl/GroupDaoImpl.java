@@ -7,8 +7,10 @@ package com.example.bill.dao.impl;
 
 import com.example.bill.dao.GroupDao;
 import com.example.bill.model.Group;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
@@ -141,6 +143,8 @@ public class GroupDaoImpl implements GroupDao {
         String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 2 WHERE group_id = ? AND total_add_state_id = 1";
         update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
     }
+    
+    
 
     @Override
     public void cancelCheckoutComfirm(int groupId, int userId) {
@@ -184,6 +188,42 @@ public class GroupDaoImpl implements GroupDao {
             balance += billAmount / size;
         }
         return balance;
+    }
+
+    @Override
+    public String[] getTranList(Group group) {
+        Map<Integer, Float> billList = new HashMap();
+        for(int userId : group.getUsersList()) 
+            billList.put(userId, Float.parseFloat("0"));
+        for(int billId : group.getBillsList()) {
+            String GET_TOTAL_BILL_ADD_SQL = "SELECT total_add_state_id FROM autobill_db.group_bill_list WHERE bill_id = ? AND group_Id = ?";
+            int billState = jdbcTemplate.queryForObject(GET_TOTAL_BILL_ADD_SQL, Integer.class, billId, group.getGroupId());
+            System.out.println(billId);
+            if(billState == 2) {
+                String GET_PAYER_ID_SQL = "SELECT bill_payer FROM autobill_db.bills WHERE bill_id = ?";
+                int payerId = jdbcTemplate.queryForObject(GET_PAYER_ID_SQL, Integer.class, billId);
+                String GET_AMOUNT_SQL = "SELECT bill_amount FROM autobill_db.bills WHERE bill_id = ?";
+                float amount = jdbcTemplate.queryForObject(GET_AMOUNT_SQL, Float.class, billId);
+                billList.replace(payerId, billList.get(payerId) + amount);
+                String GET_USER_SQL = "SELECT user_id FROM autobill_db.bill_user_list WHERE bill_id = ?;";
+                List<Map<String, Object>> users = jdbcTemplate.queryForList(GET_USER_SQL, billId);
+                int num = users.size();
+                for(int i = 0; i < users.size(); i++) {
+                    int id = Integer.parseInt(users.get(i).get("user_id").toString());
+                    billList.replace(id, billList.get(id) - amount / num);
+                }
+            }
+        }
+        PriorityQueue<Float> pos = new PriorityQueue<Float>();
+        PriorityQueue<Float> neg = new PriorityQueue<Float>();
+        int count = 0;
+        for(Integer key : billList.keySet()) {
+            if(billList.get(key) >= 0) {
+                pos.add(key)
+            }
+            count ++;
+        }
+        return tranList;
     }
     
     
