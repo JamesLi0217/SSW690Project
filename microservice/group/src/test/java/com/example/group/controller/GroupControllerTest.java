@@ -45,11 +45,6 @@ public class GroupControllerTest {
 	}
 
 	@Test
-	public void testGroupController() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testCreateGroup() {
 		fail("Not yet implemented");
 	}
@@ -61,7 +56,12 @@ public class GroupControllerTest {
 
 	@Test
 	public void testGetGroupName() throws Exception {
-		fail("Not yet implemented");
+		mockMvc.perform(MockMvcRequestBuilders
+	            .get("/group/name/3")
+	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+		        .andExpect(MockMvcResultMatchers.content().string("kayyy"))
+		        .andDo(MockMvcResultHandlers.print());
 	}
 
 	@Test
