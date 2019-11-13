@@ -50,6 +50,12 @@ public class GroupController {
         groupService.addGroupMember(group.getGroupId(), group.getUsersList());
     }
     
+    @GetMapping("balance/{groupId}/{userId}")
+    public float getIndivitualTotalBalance(@PathVariable("groupId") int groupId,
+                                            @PathVariable("userId") int userId) {
+        return groupService.getIndivitualTotalBalance(groupId, userId);
+    }
+    
     @PostMapping("/checkout/{groupId}")
     public String[] checkout(@PathVariable("groupId") int groupId) {
         return groupService.checkout(groupId);
