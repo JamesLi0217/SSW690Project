@@ -219,7 +219,7 @@ public class GroupDaoImpl implements GroupDao {
         int count = 0;
         for(Integer key : billList.keySet()) {
             if(billList.get(key) >= 0) {
-                pos.add(key)
+                pos.add(key);
             }
             count ++;
         }
