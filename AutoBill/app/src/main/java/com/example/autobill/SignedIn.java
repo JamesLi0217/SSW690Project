@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.autobill.model.User;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -80,7 +82,7 @@ public class SignedIn extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         final Request request = new Request.Builder()
-                .url("http://10.0.2.2:8084/group/jack")
+                .url("http://10.0.2.2:8085/group/name/3")
                 .get()
                 .build();
         Call call = client.newCall(request);
@@ -90,8 +92,19 @@ public class SignedIn extends AppCompatActivity {
                 Log.d("Result",e.getMessage());
             }
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                result.setText(response.body().string());
+            public void onResponse(@NotNull Call call, final Response response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            result.setText(response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        result.setTextSize(Float.parseFloat("25"));
+                    }
+                });
+
             }
         });
 

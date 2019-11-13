@@ -21,154 +21,23 @@
         android:layout_marginBottom="30dp"
         android:paddingLeft="20dp" />
 
-    <LinearLayout
-        android:id="@+id/Friend_ly_friends_1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/Friend_list_friends_view"
-        >
 
-        <RelativeLayout
-            android:id="@+id/rl_friends_1"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/FriendsView_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/icons8_male_user"
-                android:layout_marginLeft="20dp"/>
-
-        </RelativeLayout>
-
-
-        <Button
-            android:id="@+id/friends_button_3"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="Thanos"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textStyle="italic"
-            tools:ignore="RtlCompat" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/split_line_1"
-        android:layout_width="fill_parent"
-        android:layout_height="2px"
-        android:layout_marginLeft="70dp"
-        android:layout_below="@id/Friend_ly_friends_1"
-        android:layout_marginTop="2dp"
-        android:background="#DDDDDD"  />
-
-
-    <LinearLayout
-        android:id="@+id/Friend_ly_friends_2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/Friend_ly_friends_1">
-        <RelativeLayout
-            android:id="@+id/rl_friends_2"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/FriendsView_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/icons8_firned_male"
-                android:layout_marginLeft="20dp"/>
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/friends_button_4"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="Captain America"
-            android:textStyle="italic"
-            android:background="@null"
-            android:textAllCaps="false"
-            android:textAlignment="textStart"
-            android:gravity="center_vertical"
-            tools:ignore="RtlCompat"
-            android:paddingLeft="20dp"/>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/split_line_2"
-        android:layout_width="fill_parent"
-        android:layout_height="2px"
-        android:layout_marginLeft="70dp"
-        android:layout_below="@id/Friend_ly_friends_2"
-        android:layout_marginTop="2dp"
-        android:background="#DDDDDD"  />
-
-    <LinearLayout
-        android:id="@+id/Friend_ly_friends_3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/Friend_ly_friends_2">
-        <RelativeLayout
-            android:id="@+id/rl_friends_3"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/FriendsView_3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/icons8_male_user"
-                android:layout_marginLeft="20dp"/>
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/friends_button_5"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="Iron Man"
-            android:textStyle="italic"
-            android:background="@null"
-            android:textAllCaps="false"
-            android:textAlignment="textStart"
-            android:gravity="center_vertical"
-            tools:ignore="RtlCompat"
-            android:paddingLeft="20dp"/>
-
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/split_line_3"
-        android:layout_width="fill_parent"
-        android:layout_height="2px"
-        android:layout_marginLeft="70dp"
-        android:layout_below="@id/Friend_ly_friends_3"
-        android:layout_marginTop="2dp"
-        android:background="#DDDDDD"  />
-    <Button
-        android:id="@+id/test"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_below="@id/split_line_3"
-        android:text="test"/>
 
     <TextView
         android:id="@+id/friends_list"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_below="@id/test"
+        android:layout_below="@id/Friend_list_friends_view"
         android:layout_marginTop="10dp"
-        android:text="Result"
+        android:text="Friend list will go down here."
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/testbill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/friends_list"
+        android:text="Bill"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -208,8 +77,7 @@
         android:text="Friends"
         android:textAllCaps="false"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:enabled="false"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/friends_button_8"

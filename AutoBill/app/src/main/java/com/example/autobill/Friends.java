@@ -24,38 +24,62 @@ import okhttp3.Response;
 
 public class Friends extends AppCompatActivity {
 
-    private Button mBtnTest;
-    private  TextView result;
+
+    private TextView result;
     private Button mBtnFriend;
+    private Button mBtnHistory;
+    private Button mBtnGroup;
+    private Button mBtnBill;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
-        mBtnTest = findViewById(R.id.test);
-        result= findViewById(R.id.friends_list);
-        mBtnTest.setOnClickListener(new View.OnClickListener() {
+        mBtnBill = findViewById(R.id.testbill);
+        mBtnBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWebService();
-
+                Intent intent = new Intent(Friends.this,NewBill.class);
+                startActivity(intent);
             }
         });
-        mBtnFriend = findViewById(R.id.Friend_friends_button_6);
-        mBtnFriend.setOnClickListener(new View.OnClickListener() {
+
+        mBtnGroup = findViewById(R.id.Friend_friends_button_6);
+        mBtnGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Friends.this,SignedIn.class);
                 startActivity(intent);
             }
         });
+
+        mBtnHistory = findViewById(R.id.friends_button_8);
+        mBtnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Friends.this,History.class);
+                startActivity(intent);
+            }
+        });
+
+        result = findViewById(R.id.friends_list);
+        mBtnFriend = findViewById(R.id.Friend_friends_button_7);
+        mBtnFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFriendList();
+            }
+        });
+
+
     }
 
-    private void getWebService() {
+    private void getFriendList() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         final Request request = new Request.Builder()
-                .url("http://www.ssaurel.com/tmp/todos")
+                .url("http://www.ssaurel.com/tmp/todos")//获取用户Friend的信息
                 .get()
                 .build();
         Call call = client.newCall(request);

@@ -4,14 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.autobill.model.User;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -27,12 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mSu;
     private Button mBtnSignIn;
-    private TextView result;
+    private EditText username;
+    private EditText pwd;
+    private String UserName,Pwd;
+    private String is;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mSu = findViewById(R.id.su);
         mSu.setOnClickListener(new View.OnClickListener() {
@@ -44,39 +54,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        username = findViewById(R.id.username1);
+        pwd = findViewById(R.id.password);
         mBtnSignIn = findViewById(R.id.si);
-        result = findViewById(R.id.textview);
         //检查用户名密码，如果正确，则成功登录。
         mBtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,SignedIn.class);
                 startActivity(intent);
+                //UserName = username.getText().toString().trim();
+                //Pwd = pwd.getText().toString().trim();
+                //checkSignin(UserName,Pwd);
             }
         });
 
     }
 
-    private void getGroupList(){
-        OkHttpClient client = new OkHttpClient.Builder()
-                .build();
-        final Request request = new Request.Builder()
-                .url("http://10.0.2.2:8084/group/jack")//in this step, it should get the user name first.
-                .get()
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
+    private void checkSignin(final String userName,final String pwd){
+        //this function will show the user groups.
+        new Thread(new Runnable() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.d("Result",e.getMessage());
-            }
+            public void run() {
+                FormBody body = new FormBody.Builder()
+                        .add("username1",userName)
+                        .add("pwd",pwd)
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://10.0.2.2:8083/login")
+                        .post(body)
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Callback callback = new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
 
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                result.setText(response.body().string());
-            }
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                    }
+                };
+
+                }
+
         });
-
     }
+
 
 }

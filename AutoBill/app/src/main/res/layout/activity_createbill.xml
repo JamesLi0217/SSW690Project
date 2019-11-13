@@ -16,7 +16,7 @@
             android:id="@+id/create_bill_1"
             android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:text="Add New Bill"
+            android:text="Group Name"
             android:textSize="25sp"
             android:textColor="#000000"
             android:textStyle="bold"

@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import static android.view.LayoutInflater.from;
 
 public class ListAdapter extends BaseAdapter {
@@ -49,8 +51,14 @@ public class ListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.imageView = convertView.findViewById(R.id.iv);
             holder.tvTextView = convertView.findViewById(R.id.tv);
+            convertView.setTag(holder);
+        }else {
+            holder = (ViewHolder) convertView.getTag();
         }
-        return null;
+
+        holder.tvTextView.setText("TextView");
+        Glide.with(mContext).load("https://upload.wikimedia.org/wikipedia/en/e/e0/WPVG_icon_2016.svg").into(holder.imageView);
+        return convertView;
         //列表中每行的样式
     }
 
