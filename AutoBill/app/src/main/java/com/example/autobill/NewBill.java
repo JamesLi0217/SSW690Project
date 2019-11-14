@@ -28,7 +28,7 @@ import okhttp3.Response;
 
 public class NewBill extends AppCompatActivity {
     private EditText BillName, BillAmount, BillDate, BillReceipt, BillDecription, BillParticipant,BillPayer;
-    private String billname, billamount, billdate, billreceipt, billdescription, billparticipant,billpayer;
+    private String billname, billreceipt, billdescription, billparticipant;
     private Button mBtnConfirm;
     private Button mBtnCancle;
 
