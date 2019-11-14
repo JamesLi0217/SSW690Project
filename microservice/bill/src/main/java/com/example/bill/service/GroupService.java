@@ -58,7 +58,7 @@ public class GroupService {
     public String[] checkout(int groupId) {
         Group group = groupDao.getGroup(groupId);
         groupDao.checkout(groupId);
-        return null;
+        return groupDao.getTranList(group);
     }
 
     public int cancelCheckoutComfirm(int groupId, int userId) {
@@ -68,6 +68,10 @@ public class GroupService {
 
     public int getUserCancelCheckout(int groupId) {
         return groupDao.getUserCancelCheckout(groupId);
+    }
+
+    public float getIndivitualTotalBalance(int groupId, int userId) {
+        return groupDao.getIndivitualTotalBalance(groupId, userId);
     }
     
 }
