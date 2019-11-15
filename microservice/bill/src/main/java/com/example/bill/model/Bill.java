@@ -37,7 +37,7 @@ public class Bill {
             @JsonProperty("amount") float amount, 
             @JsonProperty("billName") String billName, 
             @JsonProperty("description") String description, 
-            @JsonProperty("receipt") String receiptImg, 
+            @JsonProperty("receiptImg") String receiptImg, 
             @JsonProperty("usersList") int[] usersList,
             @JsonProperty("payerId") int payerId) {
         this.groupId = groupId;

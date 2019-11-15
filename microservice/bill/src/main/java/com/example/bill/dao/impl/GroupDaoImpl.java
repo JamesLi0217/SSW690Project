@@ -10,7 +10,6 @@ import com.example.bill.model.Group;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
@@ -115,8 +114,7 @@ public class GroupDaoImpl implements GroupDao {
             }
         }
         // if everyone comfirm, change the checkout state and everyone's comfirm state, all the bills have been checked out state change to 3
-        // !!!!!!!!!!!!!!!
-        // !!!!!! change all the bills' state which have been checked out
+        // change all the bills' state which have been checked out
         if(finish == 1) {
             String CHECKOUT_COMFIRM_SQL = "UPDATE autobill_db.group_user_list SET check_state_id = 2 WHERE group_id = ?";
             int update = jdbcTemplate.update(CHECKOUT_COMFIRM_SQL, groupId);
@@ -124,6 +122,8 @@ public class GroupDaoImpl implements GroupDao {
             update = jdbcTemplate.update(TOTAL_CHECKOUT_COMFIRM_SQL, groupId);
             String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 3 WHERE group_id = ? AND total_add_state_id = 2";
             update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
+            deleteTransfer(groupId);
+            changeCheckoutCalculateState(groupId, 0);
         }
         return  jdbcTemplate.queryForObject(GET_GROUP_TOTAL_CHECKOUT_COMFIRM_SQL, Integer.class, groupId);
     }
@@ -156,6 +156,9 @@ public class GroupDaoImpl implements GroupDao {
         update = jdbcTemplate.update(TOTAL_CHECKOUT_COMFIRM_SQL, groupId);
         String BILL_STATE_CHANGE_SQL = "UPDATE autobill_db.group_bill_list SET total_add_state_id = 1 WHERE group_id = ? AND total_add_state_id = 2";
         update = jdbcTemplate.update(BILL_STATE_CHANGE_SQL, groupId);
+        deleteTransfer(groupId);
+        changeCheckoutCalculateState(groupId, 0);
+        
     }
 
     @Override
@@ -191,14 +194,13 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public String[] getTranList(Group group) {
+    public Map<Integer, Float> getTranList(Group group) {
         Map<Integer, Float> billList = new HashMap();
         for(int userId : group.getUsersList()) 
             billList.put(userId, Float.parseFloat("0"));
         for(int billId : group.getBillsList()) {
             String GET_TOTAL_BILL_ADD_SQL = "SELECT total_add_state_id FROM autobill_db.group_bill_list WHERE bill_id = ? AND group_Id = ?";
             int billState = jdbcTemplate.queryForObject(GET_TOTAL_BILL_ADD_SQL, Integer.class, billId, group.getGroupId());
-            System.out.println(billId);
             if(billState == 2) {
                 String GET_PAYER_ID_SQL = "SELECT bill_payer FROM autobill_db.bills WHERE bill_id = ?";
                 int payerId = jdbcTemplate.queryForObject(GET_PAYER_ID_SQL, Integer.class, billId);
@@ -214,16 +216,44 @@ public class GroupDaoImpl implements GroupDao {
                 }
             }
         }
-        PriorityQueue<Float> pos = new PriorityQueue<Float>();
-        PriorityQueue<Float> neg = new PriorityQueue<Float>();
-        int count = 0;
-        for(Integer key : billList.keySet()) {
-            if(billList.get(key) >= 0) {
-                pos.add(key);
-            }
-            count ++;
+        return billList;
+    }
+
+    @Override
+    public int addTransfer(int groupId, int posId, int negId, float tranAmount) {
+        String ADD_TRANSFER_SQL = "INSERT INTO autobill_db.payment(user_id, group_id, friend_id, amount) VALUES(?, ?, ?, ?)";
+        int update = jdbcTemplate.update(ADD_TRANSFER_SQL, posId, groupId, negId, tranAmount);
+        if(update !=1 ) 
+            return 0;
+        update = jdbcTemplate.update(ADD_TRANSFER_SQL, negId, groupId, posId, -tranAmount);
+        if(update !=1 ) 
+            return 0;
+        return 1;
+    }
+
+    @Override
+    public int changeCheckoutCalculateState(int groupId, int i) {
+        String CHANGE_CHECKOUT_CALCULATION_SQL = "UPDATE autobill_db.groups SET checkout_calculate_state = ? WHERE group_id = ?";
+        return jdbcTemplate.update(CHANGE_CHECKOUT_CALCULATION_SQL, i, groupId);
+    }
+
+    @Override
+    public Map<Integer, Float> getTrasfer(int groupId, int userId) {
+        String GET_USERS_LIST = "SELECT friend_id, amount FROM autobill_db.payment WHERE user_id = ? AND group_id = ?";
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(GET_USERS_LIST, userId, groupId);
+        Map<Integer, Float> res = new HashMap();
+        for(Map<String, Object> tmp :result) {
+            int friendId = Integer.parseInt(tmp.get("friend_id").toString());
+            float amount = Float.parseFloat(tmp.get("amount").toString());
+            res.put(friendId, amount);
         }
-        return tranList;
+        return res;
+    }
+
+    @Override
+    public int deleteTransfer(int groupId) {
+        String DELETE_TRANSFER_SQL = "DELETE FROM autobill_db.payment WHERE group_id = ?";
+        return jdbcTemplate.update(DELETE_TRANSFER_SQL, groupId);
     }
     
     
