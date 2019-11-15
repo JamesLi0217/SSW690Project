@@ -6,6 +6,7 @@
 package com.example.bill.dao;
 
 import com.example.bill.model.Group;
+import java.util.Map;
 
 
 /**
@@ -33,5 +34,16 @@ public interface GroupDao {
     public void cancelCheckoutComfirm(int groupId, int userId);
 
     public int getUserCancelCheckout(int groupId);
+
+    public float getIndivitualTotalBalance(int groupId, int userId);
+
+    public Map<Integer, Float> getTranList(Group group);
+
+    public int addTransfer(int groupId, int posId, int negId, float tranAmount);
+
+    public int changeCheckoutCalculateState(int groupId, int i);
+
+    public Map<Integer, Float> getTrasfer(int groupId, int userId);
     
+    public int deleteTransfer(int groupId);
 }

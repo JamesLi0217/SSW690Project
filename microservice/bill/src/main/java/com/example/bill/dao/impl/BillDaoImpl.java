@@ -38,8 +38,8 @@ public class BillDaoImpl implements BillDao {
 
     @Override
     public int createBill(Bill bill) {
-        String CREATE_BILL_SQL = "INSERT INTO autobill_db.bills(bill_name, bill_amount, bill_date, bill_receipt, bill_description) VALUES (?, ?, ?, ?, ?)";
-        int update = jdbcTemplate.update(CREATE_BILL_SQL, bill.getBillName(), bill.getAmount(), bill.getDate(), bill.getReceiptImg(), bill.getDescription());
+        String CREATE_BILL_SQL = "INSERT INTO autobill_db.bills(bill_name, bill_amount, bill_date, bill_receipt, bill_description, bill_participant, bill_payer) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        int update = jdbcTemplate.update(CREATE_BILL_SQL, bill.getBillName(), bill.getAmount(), bill.getDate(), bill.getReceiptImg(), bill.getDescription(), bill.getUsersList().length, bill.getPayerId());
         if(update != 1) {
             return 0;
         }
@@ -69,6 +69,7 @@ public class BillDaoImpl implements BillDao {
         String billName = result.get("bill_name").toString();
         float billAmount = Float.parseFloat(result.get("bill_amount").toString());
         int billDate = Integer.parseInt(result.get("bill_date").toString());
+        int payer = Integer.parseInt(result.get("bill_payer").toString());
         // bill_description
         String billReceipt = result.get("bill_receipt").toString();
         String billDesc = result.get("bill_description").toString();
@@ -79,7 +80,7 @@ public class BillDaoImpl implements BillDao {
         int[] userList = new int[users.size()];
         for(int i = 0; i < users.size(); i++) 
             userList[i] = Integer.parseInt(users.get(i).get("user_id").toString());
-        return new Bill(billId, billName, billAmount, billDate, state, billReceipt, billDesc, userList);
+        return new Bill(billId, billName, billAmount, billDate, state, billReceipt, billDesc, userList, payer);
     }
 
     @Override
@@ -142,9 +143,4 @@ public class BillDaoImpl implements BillDao {
         String GET_CANCEL_USER_SQL = "SELECT user_id FROM autobill_db.bill_user_list WHERE bill_id = ? and add_state_id = -1";
         return jdbcTemplate.queryForObject(GET_CANCEL_USER_SQL, Integer.class, billId);
     }
-
-
-    
-    
-    
 }

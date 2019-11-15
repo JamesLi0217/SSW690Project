@@ -7,6 +7,7 @@ package com.example.bill.controller;
 
 import com.example.bill.model.Group;
 import com.example.bill.service.GroupService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,9 +51,21 @@ public class GroupController {
         groupService.addGroupMember(group.getGroupId(), group.getUsersList());
     }
     
+    @GetMapping("balance/{groupId}/{userId}")
+    public float getIndivitualTotalBalance(@PathVariable("groupId") int groupId,
+                                            @PathVariable("userId") int userId) {
+        return groupService.getIndivitualTotalBalance(groupId, userId);
+    }
+    
     @PostMapping("/checkout/{groupId}")
-    public String[] checkout(@PathVariable("groupId") int groupId) {
+    public Map<Integer, Map<Integer, Float>> checkout(@PathVariable("groupId") int groupId) {
         return groupService.checkout(groupId);
+    }
+    
+    @GetMapping("checkout/trans/{groupId}/{userId}")
+    public Map<Integer, Float> getTrasfer(@PathVariable("groupId") int groupId,
+                                          @PathVariable("userId") int userId) {
+        return groupService.getTrasfer(groupId, userId);
     }
     
     @PostMapping("/checkout/{groupId}/{userId}")
