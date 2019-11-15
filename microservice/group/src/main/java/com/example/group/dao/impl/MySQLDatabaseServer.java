@@ -29,15 +29,15 @@ public class MySQLDatabaseServer implements GroupDao {
 	int update = jdbcTemplate.update(CREATE_GROUP_SQL, group.getGroupName());
 	if(update != 1) 
             return 0;
-        String GET_LAST_AUTO_INCREMENT_ID = "SELECT group_id AS LastID FROM autobill_db.groups WHERE group_id = @@Identity;";
-        int groupId = jdbcTemplate.queryForObject(GET_LAST_AUTO_INCREMENT_ID, Integer.class);
-        group.setGroupId(groupId);
-        int[] userIdList = group.getUsersList();
-        String ADD_USER_TO_GROUP_SQL = "INSERT INTO group_user_list(user_id, group_id) VALUES(?,?)";
-        for (Integer userId : userIdList) {
-            update = jdbcTemplate.update(ADD_USER_TO_GROUP_SQL, userId, groupId);
-            if(update !=1 ) 
-                return 0;
+    String GET_LAST_AUTO_INCREMENT_ID = "SELECT group_id AS LastID FROM autobill_db.groups WHERE group_id = @@Identity;";
+    int groupId = jdbcTemplate.queryForObject(GET_LAST_AUTO_INCREMENT_ID, Integer.class);
+    group.setGroupId(groupId);
+    int[] userIdList = group.getUsersList();
+    String ADD_USER_TO_GROUP_SQL = "INSERT INTO group_user_list(user_id, group_id) VALUES(?,?)";
+    for (Integer userId : userIdList) {
+        update = jdbcTemplate.update(ADD_USER_TO_GROUP_SQL, userId, groupId);
+        if(update !=1 ) 
+            return 0;
         }
         return 1;
     }
