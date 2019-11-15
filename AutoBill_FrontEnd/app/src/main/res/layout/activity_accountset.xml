@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="Account"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:background="#F9F4F4"/>
+
+    <TextView
+        android:id="@+id/aback1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"/>
+
+
+    <TextView
+        android:id="@+id/pw"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/account"
+        android:text="Password"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:textSize="30sp"
+        android:background="#FFFFFF"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/cg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change"
+        android:textColor="#5400FF"
+        android:textSize="30sp"
+        android:layout_below="@id/account"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="300dp"/>
+
+
+    <TextView
+        android:id="@+id/amiddle1"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/pw"
+        android:background="#F9F4F4"/>
+
+    <TextView
+        android:id="@+id/sq"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/amiddle1"
+        android:text="Safe questions"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:textSize="30sp"
+        android:background="#FFFFFF"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        android:textColor="#5400FF"
+        android:textSize="30sp"
+        android:layout_below="@id/amiddle1"
+        android:paddingLeft="340dp"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>
