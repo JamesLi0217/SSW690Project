@@ -1,7 +1,9 @@
 package com.developer.user.ws.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -26,8 +28,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-//	@Autowired
-//	GroupRepository groupRepository;
+	@Autowired
+	GroupRepository groupRepository;
 	
 	@Autowired
 	Utils utils;
@@ -88,28 +90,32 @@ public class UserServiceImpl implements UserService {
 		if (userEntity == null)
 			throw new UsernameNotFoundException("This id is not in db");
 
+
+		List<GroupEntity> groups = groupRepository.findAllByUserId(id);
+		userEntity.setAllGroups(groups);
 		UserDto returnValue = new UserDto();
 		BeanUtils.copyProperties(userEntity, returnValue);
- 
 		return returnValue;
 	}
+	
+	
 
-	@Override
-	public UserDto updateUser(UserDto user) {
-		// TODO Auto-generated method stub
-		UserEntity userEntity = userRepository.findByUserId(user.getUserId());
-		if (userEntity == null)
-			throw new UsernameNotFoundException("This id is not in db");
-		BeanUtils.copyProperties(user, userEntity); // user and userEntity must be same !!!!!
-		
-		UserEntity storedUserDetails = userRepository.save(userEntity);
-		
-		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getUserPassword())); // password will be enCrypted 
-																							//before stored in db
-		UserDto returnValue = new UserDto();
-		BeanUtils.copyProperties(storedUserDetails, returnValue); 
-		return returnValue;
-	}
+//	@Override
+//	public UserDto updateUser(UserDto user) {
+//		// TODO Auto-generated method stub
+//		UserEntity userEntity = userRepository.findByUserId(user.getUserId());
+//		if (userEntity == null)
+//			throw new UsernameNotFoundException("This id is not in db");
+//		BeanUtils.copyProperties(user, userEntity); // user and userEntity must be same !!!!!
+//		
+//		UserEntity storedUserDetails = userRepository.save(userEntity);
+//		
+//		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getUserPassword())); // password will be enCrypted 
+//																							//before stored in db
+//		UserDto returnValue = new UserDto();
+//		BeanUtils.copyProperties(storedUserDetails, returnValue); 
+//		return returnValue;
+//	}
 
 //	@Override
 //	public GroupDto getUserGroupsByUserId(int id) {

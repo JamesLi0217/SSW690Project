@@ -1,13 +1,22 @@
 package com.developer.user.ws.ui.model.request;
 
+import java.util.List;
 
 public class UserDetailsRequestModel {
 
+	public List<GroupRequestModel> getGroupList() {
+		return groupList;
+	}
+	public void setGroupList(List<GroupRequestModel> groupList) {
+		this.groupList = groupList;
+	}
 	private int userId;
 	private String userName;
 	private int userStartDate;
 	private String userPassword;
 	private String userEmail;
+	private List<GroupRequestModel> groupList;
+	
 	public int getUserId() {
 		return userId;
 	}

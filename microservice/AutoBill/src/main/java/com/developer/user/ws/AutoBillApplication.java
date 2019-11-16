@@ -12,6 +12,7 @@ import com.developer.user.ws.security.AppProperties;
 @SpringBootApplication
 public class AutoBillApplication {
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AutoBillApplication.class, args);
 	}

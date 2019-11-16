@@ -1,5 +1,7 @@
 package com.developer.user.ws.ui.model.response;
 
+import java.util.List;
+
 public class GroupRest {
 	
 	private long Id; // database id
@@ -7,8 +9,15 @@ public class GroupRest {
 	private float amount; 
 	private int deleteStateId;
 	private int checkStateId;
+	private List<UserRest> userList;
 	
 	
+	public List<UserRest> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<UserRest> userList) {
+		this.userList = userList;
+	}
 	public long getId() {
 		return Id;
 	}

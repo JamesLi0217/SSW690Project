@@ -45,9 +45,7 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false)
 	private boolean emailVerificationStatus ;
 	
-	@ManyToMany
-    @JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "user_id", referencedColumnName="user_id"),
-    	inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName="user_id"))
+	@ManyToMany(mappedBy = "userList")
 	private List<GroupEntity> groupList;
 
 	public List<GroupEntity> getAllGroups() {
