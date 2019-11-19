@@ -14,13 +14,14 @@
         android:textSize="30sp"
         android:background="#F9F4F4"/>
 
-    <TextView
+    <Button
         android:id="@+id/sback1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icon_back"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:background="@null"/>
 
 
     <TextView

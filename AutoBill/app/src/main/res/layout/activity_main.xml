@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:drawableRight="@drawable/title"/>
+        android:drawableRight="@drawable/title"
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/usericon"
@@ -27,7 +28,7 @@
         android:id="@+id/username1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@id/usericon"
         android:background="@drawable/input"
         android:hint="username"
@@ -36,6 +37,7 @@
         android:drawablePadding="20dp"
         android:textSize="20sp"
         android:maxLines="1"
+        android:inputType="text"
         android:drawableLeft="@drawable/icon_username"/>
 
     <EditText
@@ -43,7 +45,7 @@
         android:layout_below="@id/username1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/input"
         android:hint="password"
         android:inputType="textPassword"
@@ -60,70 +62,47 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/password"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="100dp"
         android:text="Sign In"
         android:textAllCaps="false"
         android:background="@drawable/si"
         android:textColor="#FFFFFF"
         android:textSize="20sp"/>
 
-    <TextView
+    <Button
         android:id="@+id/fp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forget Password?"
         android:layout_below="@id/si"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:text="Forget Password?"
+        android:textAllCaps="false" />
 
-    <TextView
+    <Button
         android:id="@+id/su"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:layout_below="@id/si"
         android:layout_toRightOf="@id/fp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="180dp"
-        android:onClick=""/>
+        android:background="@null"
+        android:textAllCaps="false"/>
 
-    <TextView
-        android:id="@+id/suw"
+    <Button
+        android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up with"
+        android:text="Test"
         android:layout_below="@id/si"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/f_link"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/suw"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/f_link"/>
-
-    <Button
-        android:id="@+id/g_link"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/suw"
-        android:layout_toRightOf="@+id/f_link"
+        android:layout_toRightOf="@id/fp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/g_link"/>
+        android:background="@null"
+        android:textAllCaps="false"/>
 
-    <Button
-        android:id="@+id/t_link"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/suw"
-        android:layout_toRightOf="@+id/g_link"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/t_link"/>
 
 
 </RelativeLayout>

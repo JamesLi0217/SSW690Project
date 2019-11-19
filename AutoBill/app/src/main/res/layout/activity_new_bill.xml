@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewBill">
+
+    <TextView
+        android:id="@+id/bill_info"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:text="Bill Info"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/bill_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/bill_info"
+        android:background="@drawable/input"
+        android:hint="Bill Type"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_bill_filled"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/bill_amount"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_name"
+        android:background="@drawable/input"
+        android:hint="Bill Amount"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_us_dollar_filled"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/bill_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_amount"
+        android:background="@drawable/input"
+        android:hint="Bill Date"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_us_dollar_filled"
+        android:inputType="date"/>
+
+
+    <EditText
+        android:id="@+id/bill_receipt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_date"
+        android:background="@drawable/input"
+        android:hint="Bill Receipt"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_receipt_filled"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/bill_desciption"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_receipt"
+        android:background="@drawable/input"
+        android:hint="Bill Description"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_info_filled"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/bill_participant"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_desciption"
+        android:background="@drawable/input"
+        android:hint="Bill Participants"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_conference_call_filled"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/bill_payer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/bill_participant"
+        android:background="@drawable/input"
+        android:hint="Bill Payer"
+        android:paddingLeft="10dp"
+        android:drawablePadding="18dp"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/icons8_conference_call_filled"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/bill_cancle"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bill_payer"
+        android:layout_marginTop="100dp"
+        android:text="Cancle"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/bill_confirm"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bill_payer"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="100dp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/bill_cancle" />
+
+    <TextView
+        android:id="@+id/Toastshow"
+        android:layout_below="@+id/bill_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"/>
+
+
+</RelativeLayout>

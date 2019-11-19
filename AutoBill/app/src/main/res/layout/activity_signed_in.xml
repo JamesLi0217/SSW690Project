@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignedIn">
+
+    <RelativeLayout
+        android:id="@+id/group_t"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/signedin_button"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/icons8_menu"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"/>
+
+        <Button
+            android:id="@+id/createGroup"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/signedin_button"
+            android:background="@null"
+            android:drawableEnd="@drawable/icons8_add" />
+
+        <ImageView
+            android:id="@+id/group_middle"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@id/createGroup"
+            android:background="#EEEEEE"
+            android:layout_marginTop="2dp"/>
+
+
+        <SearchView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/group_middle"
+            android:layout_marginTop="5dp"
+            android:searchHintIcon="@drawable/icons8_search" />
+
+        <ImageView
+            android:id="@+id/group_middle2"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@id/sv"
+            android:background="#EEEEEE"
+            android:layout_marginTop="2dp"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/group_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE">
+
+        <Button
+            android:id="@+id/button_6"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@null"
+            android:drawableTop="@drawable/icons8_fenzu"
+            android:text="Group"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_7"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toRightOf="@id/button_6"
+            android:background="@null"
+            android:drawableTop="@drawable/icons8_friends"
+            android:text="Friends"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_8"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:layout_toRightOf="@id/button_7"
+            android:background="@null"
+            android:drawableTop="@drawable/icons8_history"
+            android:text="History"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/group_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/group_t"
+        android:layout_above="@id/group_b">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
