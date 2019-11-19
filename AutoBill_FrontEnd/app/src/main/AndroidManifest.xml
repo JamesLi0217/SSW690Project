@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".History2Activity"></activity>
+        <activity android:name=".Testpage"></activity>
+        <activity android:name=".History2Activity" />
         <activity android:name=".NewBill" />
         <activity android:name=".History" />
         <activity android:name=".Friends" />
