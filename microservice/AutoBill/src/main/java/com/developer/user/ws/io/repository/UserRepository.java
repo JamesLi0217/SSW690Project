@@ -20,4 +20,6 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 	@Query(value="select * from group_user_list u where u.user_id = :user_id",nativeQuery=true)
 	List<GroupEntity> findGroupByUserId(@Param("user_id") int user_id);
 
+//	@Query(value="select * from friend_list u where u.user_id = :user_id",nativeQuery=true)
+//	List<UserEntity> findFriendsByUserId(int userId);
 }

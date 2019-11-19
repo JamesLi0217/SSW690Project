@@ -8,5 +8,5 @@ import com.developer.user.ws.shared.dto.GroupDto;
 
 public interface GroupService {
 	List<GroupDto> getGroups(int userId);
-    GroupDto getGroup(int groupId);
+//    GroupDto getGroup(int groupId);
 }

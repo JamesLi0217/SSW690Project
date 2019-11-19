@@ -45,16 +45,27 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false)
 	private boolean emailVerificationStatus ;
 	
+//	@ManyToMany(mappedBy = "userList")
+//	private List<GroupEntity> groupList;
+	
 	@ManyToMany(mappedBy = "userList")
-	private List<GroupEntity> groupList;
+	private List<FriendsEntity> friendList;
 
-	public List<GroupEntity> getAllGroups() {
-		return groupList;
+	public List<FriendsEntity> getFriendList() {
+		return friendList;
 	}
 
-	public void setAllGroups(List<GroupEntity> allGroups) {
-		this.groupList = allGroups;
+	public void setFriendList(List<FriendsEntity> friendList) {
+		this.friendList = friendList;
 	}
+
+//	public List<GroupEntity> getAllGroups() {
+//		return groupList;
+//	}
+//
+//	public void setAllGroups(List<GroupEntity> allGroups) {
+//		this.groupList = allGroups;
+//	}
 
 	public long getId() {
 		return Id;
@@ -127,6 +138,8 @@ public class UserEntity implements Serializable {
 	public void setEmailVerificationStatus(boolean emailVerificationStatus) {
 		this.emailVerificationStatus = emailVerificationStatus;
 	}
+
+	
 	
 	
 

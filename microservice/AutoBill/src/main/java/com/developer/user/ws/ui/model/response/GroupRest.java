@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GroupRest {
 	
-	private long Id; // database id
+//	private long Id; // database id
 	private int groupId; // return back to mobile app
 	private float amount; 
 	private int deleteStateId;
@@ -18,12 +18,12 @@ public class GroupRest {
 	public void setUserList(List<UserRest> userList) {
 		this.userList = userList;
 	}
-	public long getId() {
-		return Id;
-	}
-	public void setId(long id) {
-		Id = id;
-	}
+//	public long getId() {
+//		return Id;
+//	}
+//	public void setId(long id) {
+//		Id = id;
+//	}
 	public int getGroupId() {
 		return groupId;
 	}

@@ -45,8 +45,7 @@ public class GroupEntity implements Serializable {
 //	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 //	@JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "group_id", referencedColumnName="group_id"),
 //	inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName="user_id"))
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	private List<UserEntity> userList;
+//	private List<UserEntity> userList;
 	
 	public int getUserId() {
 		return userId;
@@ -56,13 +55,13 @@ public class GroupEntity implements Serializable {
 		this.userId = userId;
 	}
 
-	public List<UserEntity> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<UserEntity> userList) {
-		this.userList = userList;
-	}
+//	public List<UserEntity> getUserList() {
+//		return userList;
+//	}
+//
+//	public void setUserList(List<UserEntity> userList) {
+//		this.userList = userList;
+//	}
 
 	
 	

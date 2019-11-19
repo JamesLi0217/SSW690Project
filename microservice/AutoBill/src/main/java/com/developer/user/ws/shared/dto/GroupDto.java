@@ -11,7 +11,7 @@ public class GroupDto implements Serializable{
 	 */
 	private static final long serialVersionUID = -3935195604808045709L;
 	
-	private long Id; // database id
+//	private long Id; // database id
 	private int groupId; // return back to mobile app
 	private float amount; 
 	private int deleteStateId;
@@ -25,12 +25,12 @@ public class GroupDto implements Serializable{
 	public void setUserDto(List<UserDto> userDto) {
 		this.userList = userDto;
 	}
-	public long getId() {
-		return Id;
-	}
-	public void setId(long id) {
-		Id = id;
-	}
+//	public long getId() {
+//		return Id;
+//	}
+//	public void setId(long id) {
+//		Id = id;
+//	}
 	public int getGroupId() {
 		return groupId;
 	}

@@ -19,11 +19,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.developer.user.ws.io.entity.FriendsEntity;
+import com.developer.user.ws.service.FriendsService;
 import com.developer.user.ws.service.GroupService;
 import com.developer.user.ws.service.UserService;
+import com.developer.user.ws.shared.dto.FriendDto;
 import com.developer.user.ws.shared.dto.GroupDto;
 import com.developer.user.ws.shared.dto.UserDto;
 import com.developer.user.ws.ui.model.request.UserDetailsRequestModel;
+import com.developer.user.ws.ui.model.response.FriendRest;
 import com.developer.user.ws.ui.model.response.GroupRest;
 import com.developer.user.ws.ui.model.response.UserRest;
 
@@ -38,11 +42,12 @@ public class UserController {
 	@Autowired
 	GroupService groupService;
 	
-
 	@Autowired
 	GroupService groupsService;
 	
-
+	@Autowired
+	FriendsService friendsService;
+	
 	@GetMapping (path = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public UserRest getUser(@PathVariable String id) {
 		UserRest returnValue = new UserRest();
@@ -52,7 +57,6 @@ public class UserController {
 //		BeanUtils.copyProperties(findDto, returnValue);
 		return returnValue;
 	}
-	
 	
 //	@GetMapping (path = "/AllGroups/{id}",produces = {MediaType.APPLICATION_JSON_VALUE })
 //	public UserRest getUserAllGroups(@PathVariable String id) {
@@ -85,19 +89,19 @@ public class UserController {
 		return returnValue;
 	}
 	
-//	@PutMapping(path = "/{id}")
-//	public UserRest updateUser(@RequestBody UserDetailsRequestModel userDetails) {
-//		
-//		UserRest returnValue = new UserRest(); 
-//		UserDto userDto = new UserDto(); // user data transfer object between layers
-//								// source     target
-//		BeanUtils.copyProperties(userDetails, userDto); // copy data from userdetails to dto
-//		
-//		UserDto updateDto = userService.updateUser(userDto); //pass detail from ui level to service layer
-//															// bussiness logical control to create user 
-//		BeanUtils.copyProperties(updateDto, returnValue);//  no password in returnValue
-//		return returnValue;
-//	}
+	@PutMapping(path = "/{id}")
+	public UserRest updateUser(@RequestBody UserDetailsRequestModel userDetails) {
+		
+		UserRest returnValue = new UserRest(); 
+		UserDto userDto = new UserDto(); // user data transfer object between layers
+								// source     target
+		BeanUtils.copyProperties(userDetails, userDto); // copy data from userdetails to dto
+		
+		UserDto updateDto = userService.updateUser(userDto); //pass detail from ui level to service layer
+															// bussiness logical control to create user 
+		BeanUtils.copyProperties(updateDto, returnValue);//  no password in returnValue
+		return returnValue;
+	}
 	
 	@DeleteMapping(path = "/{id}")
 	public String deleteUser() {
@@ -116,6 +120,23 @@ public class UserController {
 			Type listType = new TypeToken<List<GroupRest>>() {
 			}.getType();
 			returnValue = new ModelMapper().map(groupDto, listType);
+
+		}
+
+		return returnValue;
+	}
+	
+	@GetMapping(path = "/{id}/Friends", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE})
+	public List<FriendRest> getUserFriends(@PathVariable String id) {
+		List<FriendRest> returnValue = new ArrayList<>();
+
+		List<FriendDto> friendsDto = friendsService.getFriends(Integer.parseInt(id));
+
+		if (friendsDto != null && !friendsDto.isEmpty()) {
+			Type listType = new TypeToken<List<FriendsEntity>>() {
+			}.getType();
+			returnValue = new ModelMapper().map(friendsDto, listType);
 
 		}
 

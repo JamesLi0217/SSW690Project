@@ -32,27 +32,26 @@ public class GroupServiceImpl implements GroupService {
         if(userEntity==null) return returnValue;
  
         List<GroupEntity> groups = groupRepository.findAllByUserId(userId);
-        userEntity.setAllGroups(groups);
+//        userEntity.setAllGroups(groups);
         for(GroupEntity groupEntity:groups)
         {
             returnValue.add(modelMapper.map(groupEntity, GroupDto.class) );
         }
-        
         return returnValue;
 	}
 
-	@Override
-	public GroupDto getGroup(int groupId) {
-		GroupDto returnValue = null;
-
-		GroupEntity groupEntity = groupRepository.findByGroupId(groupId);
-        
-        if(groupEntity!=null)
-        {
-            returnValue = new ModelMapper().map(groupEntity, GroupDto.class);
-        }
- 
-        return returnValue;
-	}
+//	@Override
+//	public GroupDto getGroup(int groupId) {
+//		GroupDto returnValue = null;
+//
+//		GroupEntity groupEntity = groupRepository.findByGroupId(groupId);
+//        
+//        if(groupEntity!=null)
+//        {
+//            returnValue = new ModelMapper().map(groupEntity, GroupDto.class);
+//        }
+// 
+//        return returnValue;
+//	}
 
 }
