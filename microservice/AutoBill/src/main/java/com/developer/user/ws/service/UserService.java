@@ -12,7 +12,7 @@ public interface UserService extends UserDetailsService{
 	UserDto createUser(UserDto user);
 	UserDto getUser(String email);
 	UserDto getUserByUserId(int id);
-	UserDto updateUser(UserDto user);
+	UserDto updateUser(int id, UserDto user);
 //	GroupDto getUserGroupsByUserId(int id);
 //	List<UserDto> getFriends(int parseInt);
 	

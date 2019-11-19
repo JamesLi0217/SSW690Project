@@ -105,17 +105,14 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public UserDto updateUser(UserDto user) {
+	public UserDto updateUser(int id, UserDto user) {
 		// TODO Auto-generated method stub
-		UserEntity userEntity = userRepository.findByUserId(user.getUserId());
+		UserEntity userEntity = userRepository.findByUserId(id);
 		if (userEntity == null)
 			throw new UsernameNotFoundException("This id is not in db");
-		BeanUtils.copyProperties(user, userEntity); // user and userEntity must be same !!!!!
+		userEntity.setUserName(user.getUserName());
 		
 		UserEntity storedUserDetails = userRepository.save(userEntity);
-		
-		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getUserPassword())); // password will be enCrypted 
-																							//before stored in db
 		UserDto returnValue = new UserDto();
 		BeanUtils.copyProperties(storedUserDetails, returnValue); 
 		return returnValue;

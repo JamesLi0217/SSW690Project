@@ -89,15 +89,17 @@ public class UserController {
 		return returnValue;
 	}
 	
-	@PutMapping(path = "/{id}")
-	public UserRest updateUser(@RequestBody UserDetailsRequestModel userDetails) {
+	@PutMapping(path = "/{id}",
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public UserRest updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
 		
 		UserRest returnValue = new UserRest(); 
 		UserDto userDto = new UserDto(); // user data transfer object between layers
 								// source     target
 		BeanUtils.copyProperties(userDetails, userDto); // copy data from userdetails to dto
 		
-		UserDto updateDto = userService.updateUser(userDto); //pass detail from ui level to service layer
+		UserDto updateDto = userService.updateUser(Integer.parseInt(id), userDto); //pass detail from ui level to service layer
 															// bussiness logical control to create user 
 		BeanUtils.copyProperties(updateDto, returnValue);//  no password in returnValue
 		return returnValue;
@@ -141,5 +143,32 @@ public class UserController {
 		}
 
 		return returnValue;
+	}
+	
+	// ADD FRIEND WAITING FOR APPROVE 
+	@PostMapping(path = "/{id}/addFriends/{friend_id}",
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public boolean addFriends(@PathVariable String id,@PathVariable String friend_id) {
+		
+		return friendsService.addFriends(Integer.parseInt(id),Integer.parseInt(friend_id)); 
+	}
+	
+	// APPROVE FRIEND  
+	@PutMapping(path = "/{id}/approveFriends/{friend_id}",
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public boolean approveFriends(@PathVariable String id,@PathVariable String friend_id) {
+		
+		return friendsService.approveFriends(Integer.parseInt(id),Integer.parseInt(friend_id)); 
+	}
+
+	// DENY FRIEND 
+	@PutMapping(path = "/{id}/denyFriends/{friend_id}",
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public boolean denyFriends(@PathVariable String id,@PathVariable String friend_id) {
+		
+		return friendsService.denyFriends(Integer.parseInt(id),Integer.parseInt(friend_id)); 
 	}
 }

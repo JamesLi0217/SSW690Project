@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.developer.user.ws.io.entity.FriendsEntity;
@@ -39,5 +40,51 @@ public class FriendsServiceImpl implements FriendsService {
         }
         
         return returnValue;
+	}
+
+	@Override
+	public boolean addFriends(int user_id, int friend_id) {
+		// TODO Auto-generated method stub
+		UserEntity userEntity = userRepository.findByUserId(user_id);
+		UserEntity friendEntity = userRepository.findByUserId(friend_id);
+		if (userEntity == null || friendEntity == null)
+			throw new UsernameNotFoundException("This id is not in db");
+		
+		FriendsEntity friendsEntity = new FriendsEntity();
+		friendsEntity.setFriendId(friend_id);
+		friendsEntity.setUserId(user_id);
+		friendsEntity.setConfirmStateId(0);
+		friendsRepository.save(friendsEntity);
+		
+		return true;
+	}
+
+	@Override
+	public boolean approveFriends(int user_id, int friend_id) {
+		// TODO Auto-generated method stub
+		UserEntity userEntity = userRepository.findByUserId(user_id);
+		UserEntity friendEntity = userRepository.findByUserId(friend_id);
+		if (userEntity == null || friendEntity == null)
+			throw new UsernameNotFoundException("This id is not in db");
+		
+		FriendsEntity friendsEntity = friendsRepository.findByUserId(user_id);
+		friendsEntity.setConfirmStateId(1);
+		friendsRepository.save(friendsEntity);
+		
+		return true;
+	}
+
+	@Override
+	public boolean denyFriends(int user_id, int friend_id) {
+		// TODO Auto-generated method stub
+		UserEntity userEntity = userRepository.findByUserId(user_id);
+		UserEntity friendEntity = userRepository.findByUserId(friend_id);
+		if (userEntity == null || friendEntity == null)
+			throw new UsernameNotFoundException("This id is not in db");
+		FriendsEntity friendsEntity = friendsRepository.findByUserId(user_id);
+		friendsEntity.setConfirmStateId(-1);
+		friendsRepository.save(friendsEntity);
+		
+		return true;
 	}
 }
