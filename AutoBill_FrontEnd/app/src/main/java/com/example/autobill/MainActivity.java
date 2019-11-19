@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText pwd;
     private String UserName,Pwd;
     private String is;
+    private Button mBtnFp;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -67,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 //UserName = username.getText().toString().trim();
                 //Pwd = pwd.getText().toString().trim();
                 //checkSignin(UserName,Pwd);
+            }
+        });
+
+        mBtnFp = findViewById(R.id.fp);
+        mBtnFp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Testpage.class);
+                startActivity(intent);
             }
         });
 
