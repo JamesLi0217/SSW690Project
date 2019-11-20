@@ -24,7 +24,7 @@ public class GroupServiceTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		group = new Group(666, "test");
+		group = new Group(666, "test2");
 		int [] usersList = new int[] {1,2,3};
 		group.setUsersList(usersList);
 	}
@@ -35,24 +35,16 @@ public class GroupServiceTest {
 	}
 
 	@Test
-	@Transactional      //rollback
+	@Transactional     //rollback
 	public void testCreateGroup() throws Exception {
 		assertEquals(0, groupService.createGroup(group));
 	}
 
 	@Test
-	public void testGetGroupName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetGroup() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	@Transactional
 	public void testAddGroupMember() {
-		fail("Not yet implemented");
+		int [] usersList = new int[] {5,6,7};
+		assertEquals(1, groupService.addGroupMember(3,usersList));
 	}
 
 	@Test
