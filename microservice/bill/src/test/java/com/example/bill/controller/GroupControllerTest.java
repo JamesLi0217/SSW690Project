@@ -2,6 +2,7 @@ package com.example.bill.controller;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -37,7 +38,7 @@ public class GroupControllerTest {
 	public void setupMockMvc() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
-	
+	/*
 	@Test
 	public void testHello() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders
@@ -48,7 +49,7 @@ public class GroupControllerTest {
 		        .andExpect(MockMvcResultMatchers.content().string("Hello Tom!"))
 		        .andDo(MockMvcResultHandlers.print());
 	}
-
+	*/
 
 	@Test
 	public void testGetGroup() throws Exception{
@@ -74,13 +75,22 @@ public class GroupControllerTest {
 	}
 
 	@Test
-	public void testAddGroupMember() {
-		fail("Not yet implemented");
+	public void testCheckout() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.
+				post("/group/checkout/9")
+		        .contentType(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+		        .andDo(print())
+		        .andExpect(status().isOk()).andReturn();
 	}
-
+	
 	@Test
-	public void testCheckout() {
-		fail("Not yet implemented");
+	public void testgetIndivitualTotalBalance() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders
+	            .get("/group/balance/3/3")
+	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+		        .andExpect(MockMvcResultMatchers.content().string("0.0"))
+		        .andDo(MockMvcResultHandlers.print());
 	}
 
 	@Test
@@ -94,13 +104,24 @@ public class GroupControllerTest {
 	}
 
 	@Test
-	public void testCancelCheckoutComfirm() {
-		fail("Not yet implemented");
+	public void testCancelCheckoutComfirm() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.
+				post("/group/checkout/cancel/9/6")
+		        .contentType(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+		        .andDo(print())
+		        .andExpect(status().isOk())
+		        .andExpect(MockMvcResultMatchers.content().string("2"))
+		        .andDo(MockMvcResultHandlers.print());
 	}
 
 	@Test
-	public void testGetUserCancelCheckout() {
-		fail("Not yet implemented");
+	public void testGetUserCancelCheckout() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders
+	            .get("/group/checkout/cancel/9")
+	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+		        .andExpect(MockMvcResultMatchers.content().string("6"))
+		        .andDo(MockMvcResultHandlers.print());
 	}
 
 	@Test
@@ -119,7 +140,17 @@ public class GroupControllerTest {
 	            .get("/group/checkout/9/6")
 	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-		        .andExpect(MockMvcResultMatchers.content().string("2"))
+		        .andExpect(MockMvcResultMatchers.content().string("0"))
+		        .andDo(MockMvcResultHandlers.print());
+	}
+	
+	@Test
+	public void testgetTrasfer() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders
+	            .get("/group/checkout/trans/9/6")
+	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+		        .andExpect(MockMvcResultMatchers.content().string("{}"))
 		        .andDo(MockMvcResultHandlers.print());
 	}
 
