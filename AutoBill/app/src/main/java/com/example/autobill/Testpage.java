@@ -52,7 +52,7 @@ public class Testpage extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "13";
+                String path = url + "11";
                 Request request = new Request.Builder().url(path).build();
                 try {
                     Response response = client.newCall(request).execute();
@@ -70,6 +70,7 @@ public class Testpage extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(date);
                 Map<String, Object> map = new HashMap<>();
+
                 String name = jsonObject.getString("groupName");
                 String id = jsonObject.getString("groupId");
 

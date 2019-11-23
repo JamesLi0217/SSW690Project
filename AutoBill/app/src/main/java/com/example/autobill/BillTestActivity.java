@@ -38,8 +38,6 @@ public class BillTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bill_test);
         recyclerView = findViewById(R.id.bt_rv);
         okhttpDate();
-//        mTv = findViewById(R.id.bt_money);
-//        mTv.setText(jsonObject);
     }
     private void okhttpDate() {
         Log.i("TAG", "--OK--");
@@ -69,6 +67,8 @@ public class BillTestActivity extends AppCompatActivity {
                 String name = jsonObject.getString("billName");
                 String money = jsonObject.getString("amount");
                 String time = jsonObject.getString("date");
+                mTv = findViewById(R.id.bt_money);
+                mTv.setText(jsonObject.getString("amount"));
 
                 map.put("Name", name);
                 map.put("Money", money);
