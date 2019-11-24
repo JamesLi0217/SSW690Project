@@ -111,7 +111,7 @@ public class UserController {
 	}
 	
 	
-	@GetMapping(path = "/{id}/AllGroups", produces = { MediaType.APPLICATION_XML_VALUE,
+	@GetMapping(path = "/{id}/AllGroups", produces = { 
 			MediaType.APPLICATION_JSON_VALUE})
 	public List<GroupRest> getUserGroups(@PathVariable String id) {
 		List<GroupRest> returnValue = new ArrayList<>();
@@ -128,7 +128,7 @@ public class UserController {
 		return returnValue;
 	}
 	
-	@GetMapping(path = "/{id}/Friends", produces = { MediaType.APPLICATION_XML_VALUE,
+	@GetMapping(path = "/{id}/Friends", produces = { 
 			MediaType.APPLICATION_JSON_VALUE})
 	public List<FriendRest> getUserFriends(@PathVariable String id) {
 		List<FriendRest> returnValue = new ArrayList<>();
