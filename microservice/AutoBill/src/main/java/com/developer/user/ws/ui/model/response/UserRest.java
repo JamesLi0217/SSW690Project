@@ -12,14 +12,14 @@ public class UserRest {
 //	public String user_password;  request model can contain password, response can't contain password
 	private String userEmail;
 	
-	private List<GroupEntity> groupList;
+//	private List<GroupRest> groupList;
 	
-	public List<GroupEntity> getAllGroups() {
-		return groupList;
-	}
-	public void setAllGroups(List<GroupEntity> allGroups) {
-		this.groupList = allGroups;
-	}
+//	public List<GroupRest> getAllGroups() {
+//		return groupList;
+//	}
+//	public void setAllGroups(List<GroupRest> allGroups) {
+//		this.groupList = allGroups;
+//	}
 	public int getUserId() {
 		return userId;
 	}
