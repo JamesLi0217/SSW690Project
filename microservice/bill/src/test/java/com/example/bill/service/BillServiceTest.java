@@ -16,7 +16,8 @@ import com.example.bill.service.GroupService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = UserdemoApplication.class)
-public class GroupServiceTest {
+
+class BillServiceTest {
 
 	@Autowired
 	private GroupService groupService;
@@ -30,55 +31,47 @@ public class GroupServiceTest {
 	}
 
 	@Test
-	public void testGroupService() {
+	void testBillService() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	@Transactional     //rollback
-	public void testCreateGroup() throws Exception {
-		assertEquals(0, groupService.createGroup(group));
-	}
-
-	@Test
-	@Transactional
-	public void testAddGroupMember() {
-		int [] usersList = new int[] {5,6,7};
-		assertEquals(1, groupService.addGroupMember(3,usersList));
-	}
-
-	@Test
-	public void testCheckoutComfirm() {
+	void testGetBillGeneral() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetTotalCheckoutState() {
+	void testCreateBill() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetUserCheckoutComfirm() {
+	void testGetBill() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testCheckout() {
+	void testGetTotalAddState() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testCancelCheckoutComfirm() {
+	void testBillAddComfirm() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetUserCancelCheckout() {
+	void testGetUserAddComfirm() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetIndivitualTotalBalance() {
+	void testCancelAddComfirm() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetUserCancelAdd() {
 		fail("Not yet implemented");
 	}
 
