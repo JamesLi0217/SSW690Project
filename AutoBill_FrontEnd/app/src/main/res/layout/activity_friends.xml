@@ -5,39 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Friends">
+    <Button
+        android:id="@+id/sideview"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:drawableLeft="@drawable/icons8_menu"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"/>
+
+    <Button
+        android:id="@+id/addfriend"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/sideview"
+        android:background="@null"
+        android:drawableEnd="@drawable/icons8_add" />
 
     <SearchView
         android:id="@+id/Friend_search_friends_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        android:searchHintIcon="@drawable/icons8_search" />
+        android:searchHintIcon="@drawable/icons8_search"
+        android:layout_below="@+id/addfriend"/>
 
-    <ListView
-        android:id="@+id/Friend_list_friends_view"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/Friend_search_friends_view"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp" />
-
-
-
-    <TextView
-        android:id="@+id/friends_list"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/Friend_list_friends_view"
-        android:layout_marginTop="10dp"
-        android:text="Friend list will go down here."
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/testbill"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/friends_list"
-        android:text="Bill"/>
 
     <LinearLayout
         android:layout_width="match_parent"

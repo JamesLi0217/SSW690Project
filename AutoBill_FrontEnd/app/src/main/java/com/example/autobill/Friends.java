@@ -2,6 +2,7 @@ package com.example.autobill;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+import com.example.autobill.model.Group;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -22,81 +25,51 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
+
 public class Friends extends AppCompatActivity {
 
 
-    private TextView result;
-    private Button mBtnFriend;
-    private Button mBtnHistory;
-    private Button mBtnGroup;
-    private Button mBtnBill;
+    private Button mBtngroup;
+    private Button mBtnsideview;
+    private Button mBtnaddfriend;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
-        mBtnBill = findViewById(R.id.testbill);
-        mBtnBill.setOnClickListener(new View.OnClickListener() {
+
+        mBtnaddfriend = findViewById(R.id.addfriend);
+        mBtngroup = findViewById(R.id.button_6);
+        mBtnsideview = findViewById(R.id.sideview);
+
+
+        mBtnsideview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Friends.this,NewBill.class);
+                Intent intent = new Intent(Friends.this,SidesettingActivity.class);
                 startActivity(intent);
             }
         });
 
-        mBtnGroup = findViewById(R.id.Friend_friends_button_6);
-        mBtnGroup.setOnClickListener(new View.OnClickListener() {
+        mBtngroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Friends.this,SignedIn.class);
+                Intent intent = new Intent(Friends.this, Group.class);
                 startActivity(intent);
             }
         });
 
-        mBtnHistory = findViewById(R.id.friends_button_8);
-        mBtnHistory.setOnClickListener(new View.OnClickListener() {
+        mBtnaddfriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Friends.this,History.class);
+                Intent intent = new Intent(Friends.this,addFriend.class);
                 startActivity(intent);
             }
         });
-
-        result = findViewById(R.id.friends_list);
-        mBtnFriend = findViewById(R.id.Friend_friends_button_7);
-        mBtnFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFriendList();
-            }
-        });
-
 
     }
 
-    private void getFriendList() {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .build();
-        final Request request = new Request.Builder()
-                .url("http://www.ssaurel.com/tmp/todos")//获取用户Friend的信息
-                .get()
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                result.setText(response.body().string());
-            }
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("Result",e.getMessage());
-            }
-
-        });
-
-    }
 
     }
 

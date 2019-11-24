@@ -37,14 +37,6 @@ public class History extends AppCompatActivity {
                 getHistory();
             }
         });
-        mBtnListView = findViewById(R.id.test_listview);
-        mBtnListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(History.this, ListViewActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 

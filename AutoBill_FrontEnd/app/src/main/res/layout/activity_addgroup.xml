@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addgroup">
+
+    <TextView
+        android:id="@+id/addGroup"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="Create Group"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/groupName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/addGroup"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/input"
+        android:drawableLeft="@drawable/icons8_fenzu"
+        android:drawablePadding="18dp"
+        android:hint="Group Name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/userlist"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/groupName"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input"
+        android:drawableLeft="@drawable/icons8_profile"
+        android:drawablePadding="18dp"
+        android:hint="User List"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/group_cancle"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/userlist"
+        android:layout_marginTop="100dp"
+        android:text="Cancle"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/group_confirm"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/userlist"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="100dp"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/group_cancle" />
+
+</RelativeLayout>

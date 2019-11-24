@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -18,7 +17,6 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,8 +27,7 @@ public class SignedIn extends AppCompatActivity {
     private Button mBtnSideView;
     private Button mBtnFriend;
     private Button mBtnHistory;
-    private Button test;
-    private TextView result;
+    private Button mBtnCreateGroup;
 
 
     @Override
@@ -47,16 +44,6 @@ public class SignedIn extends AppCompatActivity {
 
             }
         });
-
-        test = findViewById(R.id.button_6);
-        result = findViewById(R.id.textview);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getGroupList();
-            }
-        });
-
 
         mBtnFriend = findViewById(R.id.button_7);
         mBtnFriend.setOnClickListener(new View.OnClickListener() {
@@ -76,35 +63,12 @@ public class SignedIn extends AppCompatActivity {
             }
         });
 
-    }
-    private void getGroupList(){
-        //this function will show the user groups.
-        OkHttpClient client = new OkHttpClient.Builder()
-                .build();
-        final Request request = new Request.Builder()
-                .url("http://10.0.2.2:8085/group/name/3")
-                .get()
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
+        mBtnCreateGroup = findViewById(R.id.createGroup);
+        mBtnCreateGroup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.d("Result",e.getMessage());
-            }
-            @Override
-            public void onResponse(@NotNull Call call, final Response response) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            result.setText(response.body().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        result.setTextSize(Float.parseFloat("25"));
-                    }
-                });
-
+            public void onClick(View v) {
+                Intent intent = new Intent(SignedIn.this,addgroup.class);
+                startActivity(intent);
             }
         });
 

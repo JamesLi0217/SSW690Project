@@ -26,7 +26,6 @@
         android:drawableEnd="@drawable/icons8_add" />
 
 
-
     <SearchView
         android:id="@+id/sv"
         android:layout_width="match_parent"
@@ -42,6 +41,7 @@
         android:layout_height="500dp"
         android:layout_below="@+id/sv"
         android:layout_marginTop="30dp" />
+
 
     <Button
         android:id="@+id/button_6"
