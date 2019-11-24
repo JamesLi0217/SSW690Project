@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,6 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+@Rollback
 public class GroupControllerTest {
 
 	@Autowired
@@ -86,7 +88,7 @@ public class GroupControllerTest {
 	@Test
 	public void testgetIndivitualTotalBalance() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders
-	            .get("/group/balance/3/3")
+	            .get("/group/balance/3/3") 
 	            .accept(org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 		        .andExpect(MockMvcResultMatchers.content().string("0.0"))
