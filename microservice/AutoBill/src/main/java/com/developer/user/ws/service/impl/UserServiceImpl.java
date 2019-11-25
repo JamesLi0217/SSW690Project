@@ -1,7 +1,9 @@
 package com.developer.user.ws.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -10,13 +12,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.developer.user.ws.io.entity.FriendsEntity;
 import com.developer.user.ws.io.entity.GroupEntity;
 import com.developer.user.ws.io.entity.UserEntity;
+import com.developer.user.ws.io.repository.FriendsRepository;
 import com.developer.user.ws.io.repository.GroupRepository;
 import com.developer.user.ws.io.repository.UserRepository;
 import com.developer.user.ws.service.UserService;
 import com.developer.user.ws.shared.Utils;
-import com.developer.user.ws.shared.dto.GroupDto;
 import com.developer.user.ws.shared.dto.UserDto;
 
 
@@ -26,8 +29,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-//	@Autowired
-//	GroupRepository groupRepository;
+	@Autowired
+	GroupRepository groupRepository;
+	
+	@Autowired
+	FriendsRepository friendsRepository;
 	
 	@Autowired
 	Utils utils;
@@ -88,28 +94,47 @@ public class UserServiceImpl implements UserService {
 		if (userEntity == null)
 			throw new UsernameNotFoundException("This id is not in db");
 
+
+		List<GroupEntity> groups = groupRepository.findAllGroupByUserId(id);
+//		userEntity.setAllGroups(groups);
 		UserDto returnValue = new UserDto();
 		BeanUtils.copyProperties(userEntity, returnValue);
- 
 		return returnValue;
 	}
+	
+	
 
 	@Override
-	public UserDto updateUser(UserDto user) {
+	public UserDto updateUser(int id, UserDto user) {
 		// TODO Auto-generated method stub
-		UserEntity userEntity = userRepository.findByUserId(user.getUserId());
+		UserEntity userEntity = userRepository.findByUserId(id);
 		if (userEntity == null)
 			throw new UsernameNotFoundException("This id is not in db");
-		BeanUtils.copyProperties(user, userEntity); // user and userEntity must be same !!!!!
+		userEntity.setUserName(user.getUserName());
 		
 		UserEntity storedUserDetails = userRepository.save(userEntity);
-		
-		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getUserPassword())); // password will be enCrypted 
-																							//before stored in db
 		UserDto returnValue = new UserDto();
 		BeanUtils.copyProperties(storedUserDetails, returnValue); 
 		return returnValue;
 	}
+
+//	@Override
+//	public List<UserDto> getFriends(int userId) {
+//		List<UserDto> returnValue = new ArrayList<>();
+//        ModelMapper modelMapper = new ModelMapper();
+//        
+//        UserEntity userEntity = userRepository.findByUserId(userId);
+//        if(userEntity==null) return returnValue;
+// 
+//        List<FriendsEntity> friends = friendsRepository.findAllByUserId(userId);
+//        userEntity.setFriendList(friends);
+////        for(FriendsEntity friendEntity:friends)
+////        {
+////            returnValue.add(modelMapper.map(friendEntity, FriendsEntity.class) );
+////        }
+//        
+//        return returnValue;
+//	}
 
 //	@Override
 //	public GroupDto getUserGroupsByUserId(int id) {

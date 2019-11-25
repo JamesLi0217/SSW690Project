@@ -21,12 +21,12 @@ public class UserDto implements Serializable{
 	private String encryptedPassword = "false"; // encrypted password stored in database
 	private String emailVerificationToken;
 	private boolean emailVerificationStatus = false;
-	private List<GroupEntity> groupList;
+	private List<GroupDto> groupList;
 	
-	public List<GroupEntity> getAllGroups() {
+	public List<GroupDto> getAllGroups() {
 		return groupList;
 	}
-	public void setAllGroups(List<GroupEntity> allGroups) {
+	public void setAllGroups(List<GroupDto> allGroups) {
 		this.groupList = allGroups;
 	}
 	public long getId() {

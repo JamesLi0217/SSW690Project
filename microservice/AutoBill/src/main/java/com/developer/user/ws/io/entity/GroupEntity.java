@@ -3,15 +3,19 @@ package com.developer.user.ws.io.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "groupUserList")
+@Table(name = "group_user_list")
 public class GroupEntity implements Serializable {
 
 	/**
@@ -38,8 +42,28 @@ public class GroupEntity implements Serializable {
 	@Column(name = "check_state_id")
 	private int checkStateId;
 	
-	@ManyToMany(mappedBy = "groupList")
-	private List<UserEntity> userList;
+//	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+//	@JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "group_id", referencedColumnName="group_id"),
+//	inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName="user_id"))
+//	private List<UserEntity> userList;
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+//	public List<UserEntity> getUserList() {
+//		return userList;
+//	}
+//
+//	public void setUserList(List<UserEntity> userList) {
+//		this.userList = userList;
+//	}
+
+	
 	
 	
 
