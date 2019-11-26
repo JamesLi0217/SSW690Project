@@ -1,5 +1,4 @@
 package com.example.autobill;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +44,9 @@ public class SignedIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signed_in);
         recyclerView = findViewById(R.id.group_rv);
+        Intent intent = getIntent();
+        String daima = intent.getStringExtra("key");
+        System.out.println(daima);
         okhttpDate();
 
         mBtnSideView = findViewById(R.id.signedin_button);
@@ -93,7 +95,7 @@ public class SignedIn extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "13";
+                String path = url + "13";//userID
                 Request request = new Request.Builder().url(path).build();
                 try {
                     Response response = client.newCall(request).execute();

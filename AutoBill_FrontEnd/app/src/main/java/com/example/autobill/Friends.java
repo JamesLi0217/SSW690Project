@@ -85,7 +85,7 @@ public class Friends extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "1/Friends";
+                String path = url + "1/Friends";//UserID
                 Request request = new Request
                         .Builder()
                         .url(path)

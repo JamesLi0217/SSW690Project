@@ -59,7 +59,7 @@ public class BillInfoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "12";
+                String path = url + "12";//hardcode
                 Request request = new Request.Builder().url(path).build();
                 try {
                     Response response = client.newCall(request).execute();

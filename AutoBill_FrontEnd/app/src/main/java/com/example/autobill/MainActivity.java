@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mSu;
     private Button mBtnSignIn;
-    private EditText usereamil, pwd;
+    private EditText useremail, pwd;
     private String userEmail, userPassword;
     private String Code;
-    private int Daima;
+    private int returnCode;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        usereamil = findViewById(R.id.username1);
+        useremail = findViewById(R.id.username1);
         pwd = findViewById(R.id.password);
         mBtnSignIn = findViewById(R.id.si);
         mBtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userEmail = usereamil.getText().toString().trim();
+                userEmail = useremail.getText().toString().trim();
                 userPassword = pwd.getText().toString().trim();
                 try {
                     checkSignin(userEmail, userPassword);
@@ -70,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (Code != null){
                     login(Code);
-                    if(Daima == 200){
+                    if(returnCode == 200){
                         Intent intent = new Intent(MainActivity.this, SignedIn.class);
+                        intent.putExtra("key",Code);
                         startActivity(intent);
                     }
                 }
@@ -138,10 +139,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                Daima = response.code();
+                returnCode = response.code();
             }
         });
-        return Daima;
+        return returnCode;
     }
 
 }
