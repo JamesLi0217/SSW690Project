@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".addFriend"></activity>
-        <activity android:name=".addgroup" />
-        <activity android:name=".RecyclerView.recycler" />
-        <activity android:name=".RecyclerView.show" />
+        <activity android:name=".BillInfoActivity"></activity>
+        <activity android:name=".addFriend"/>
+        <activity android:name=".addgroup"/>
+        <activity android:name=".History2Activity" />
         <activity android:name=".NewBill" />
         <activity android:name=".History" />
         <activity android:name=".Friends" />

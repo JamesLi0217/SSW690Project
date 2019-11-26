@@ -67,6 +67,8 @@ public class SignupActivity extends AppCompatActivity {
                 useremail = etUserEmail.getText().toString().trim();
                 SignUp(username,userstartdate,userpwd,useremail);
                 Toast.makeText(getApplicationContext(), "Profile Has Been Submitted", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SignupActivity.this,MainActivity.class);
+                startActivity(intent);
 
             }
         });

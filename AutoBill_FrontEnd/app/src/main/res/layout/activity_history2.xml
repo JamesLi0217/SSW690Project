@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".History2Activity">
+
+    <TextView
+        android:id="@+id/history_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="History"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#22B4D8"/>
+
+    <ImageView
+        android:id="@+id/group_middle"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/history_title"
+        android:background="#EEEEEE" />
+
+    <SearchView
+        android:id="@+id/history_sv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/history_title"
+        android:layout_marginTop="5dp"
+        android:searchHintIcon="@drawable/icons8_search" />
+
+    <ImageView
+        android:id="@+id/history_middle"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/history_sv"
+        android:background="#EEEEEE" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/history_sv">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

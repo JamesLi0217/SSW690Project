@@ -46,7 +46,7 @@ public class addgroup extends AppCompatActivity {
         groupcancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(addgroup.this,SignupActivity.class);
+                Intent intent = new Intent(addgroup.this,SignedIn.class);
                 startActivity(intent);
             }
         });

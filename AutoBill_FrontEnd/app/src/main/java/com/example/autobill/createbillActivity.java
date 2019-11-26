@@ -16,7 +16,7 @@ public class createbillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createbill);
 
-        CreateBill = findViewById(R.id.add);
+        CreateBill = findViewById(R.id.bill_info_add);
         CreateBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

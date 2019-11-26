@@ -23,7 +23,7 @@ public class History extends AppCompatActivity {
 
     private TextView tvHistory;
     private Button mBtnGetHistory;
-    private Button mBtnListView;
+    private Button mBtnHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,16 @@ public class History extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getHistory();
+            }
+        });
+
+        mBtnHistory = findViewById(R.id.history2);
+        mBtnHistory.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(History.this, History2Activity.class);
+                startActivity(intent);
             }
         });
 

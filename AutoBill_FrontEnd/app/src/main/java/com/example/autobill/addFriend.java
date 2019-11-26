@@ -46,9 +46,10 @@ public class addFriend extends AppCompatActivity {
         addCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(addFriend.this,"Adding friedns has been cancled",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(addFriend.this,Friends.class);
+
+                Intent intent = new Intent(addFriend.this, com.example.autobill.Friends.class);
                 startActivity(intent);
+                Toast.makeText(addFriend.this,"Adding friedns has been cancled",Toast.LENGTH_LONG).show();
             }
         });
 
