@@ -12,3 +12,6 @@ https://docs.google.com/document/d/1nIhWh9tpHkW2BTBReWLQpampKa0bNjw0B1Ry8TaGWX8/
 
 *2019-10-21     
 https://docs.google.com/document/d/1665tBzWGYcm1Wa1Pu83gGaKXAeD-tRWewVcQ5ndur68/edit?usp=sharing
+
+*2019-11-25   
+https://docs.google.com/document/d/1s8o-x1VvURkRXzRD3UYQ-7A9lUD-i4HSuaYFhQzqS50/edit#heading=h.qfxrr2zhp6sv
