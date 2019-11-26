@@ -1,57 +1,49 @@
 package com.example.autobill.model;
 
-public class User{
+public class User {
+
     public int user_id;
-    public String user_name;
-    public int user_start_date;
-    public String user_password;
-    public String user_email;
+    public String userName;
+    public int userStartDate;
+    public String userPassword;
+    public String userEmail;
     public int[] groupList;
 
-    public User() {
-        this.user_id = 3;
-        this.user_name= "jack";
-        groupList = new int[2];
-        groupList[0] = 3;
-        groupList[1] = 6;
 
+    public User(){}
+    public User(String userName, int userStartDate, String userPassword, String userEmail) {
+        this.userName = userName;
+        this.userStartDate = userStartDate;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
     }
 
-    public int[] getGroupList() {
-        return this.groupList;
+
+    public User(String userEmail, String userPassword) {
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
     }
 
-    public int getID() {
-        return user_id;
-    }
-
-    public void setId(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getUserName() {
-        return user_name;
-    }
 
     public void setUserName(String user_name) {
-        this.user_name = user_name;
+        this.userName = user_name;
     }
 
 
     public String getPassword() {
-        return user_password;
+        return userPassword;
     }
 
     public void setPassword(String user_password) {
-        this.user_password = user_password;
+        this.userPassword = user_password;
     }
 
     public String getUserEmail() {
-        return user_password;
+        return userEmail;
     }
 
     public void setUserEmail(String user_email) {
-        this.user_email = user_email;
+        this.userEmail = user_email;
     }
 
 

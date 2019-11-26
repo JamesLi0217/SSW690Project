@@ -5,16 +5,24 @@
     android:layout_margin="5dp"
     android:background="#FFFFFF">
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/friends_iv"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="#000000"/>-->
+    <TextView
         android:id="@+id/friends_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="#000000"/>
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/friends_name"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_toRightOf="@id/friends_iv"
         android:textSize="25sp"
         android:gravity="center" />
 

@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BillTestAdapter extends RecyclerView.Adapter<BillTestAdapter.ViewHolder> {
+public class BillInfoAdapter extends RecyclerView.Adapter<BillInfoAdapter.ViewHolder> {
 
     public List<Map<String, Object>> list=new ArrayList<>();
     public Context con;
     public LayoutInflater inflater;
 
-    public BillTestAdapter(List<Map<String, Object>> list, Context con) {
+    public BillInfoAdapter(List<Map<String, Object>> list, Context con) {
         this.con = con;
         this.list = list;
         inflater = LayoutInflater.from(con);
@@ -27,7 +27,7 @@ public class BillTestAdapter extends RecyclerView.Adapter<BillTestAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.bill_test_item, null);
+        View view = inflater.inflate(R.layout.bill_info_item, null);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }

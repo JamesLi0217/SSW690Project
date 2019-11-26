@@ -1,6 +1,5 @@
 package com.example.autobill.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Group {
     private int groupId;
@@ -10,13 +9,16 @@ public class Group {
     private int[] billsList;
     private int[] usersList;
 
-    public Group(@JsonProperty("usersList") int[] usersList,
-                 @JsonProperty("groupName") String groupName,
-                 @JsonProperty("groupId") int groupId) {
+    public Group(int[] usersList, String groupName, int groupId) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.usersList = usersList;
 
+    }
+
+    public Group(String groupName,int [] usersList){
+        this.groupName = groupName;
+        this.usersList = usersList;
     }
 
     public Group(int groupId, String groupName) {

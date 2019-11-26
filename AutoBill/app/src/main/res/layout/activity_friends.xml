@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/signedin_button"
+            android:id="@+id/sideview"
             android:layout_width="50dp"
             android:layout_height="70dp"
             android:drawableLeft="@drawable/icons8_menu"
@@ -22,13 +22,13 @@
             android:background="@null"/>
 
         <Button
-            android:id="@+id/createGroup"
+            android:id="@+id/addfriend"
             android:layout_width="50dp"
             android:layout_height="70dp"
             android:layout_marginLeft="310dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/signedin_button"
+            android:layout_toRightOf="@id/sideview"
             android:background="@null"
             android:drawableEnd="@drawable/icons8_add" />
 
@@ -36,12 +36,12 @@
             android:id="@+id/friends_middle"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:layout_below="@id/createGroup"
+            android:layout_below="@id/addfriend"
             android:background="#EEEEEE"
             android:layout_marginTop="2dp"/>
 
         <SearchView
-            android:id="@+id/sv"
+            android:id="@+id/Friend_search_friends_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/friends_middle"
@@ -52,36 +52,11 @@
             android:id="@+id/friends_middle2"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:layout_below="@id/sv"
+            android:layout_below="@id/Friend_search_friends_view"
             android:background="#EEEEEE"
             android:layout_marginTop="2dp"/>
 
     </RelativeLayout>
-
-<!--    <ListView-->
-<!--        android:id="@+id/Friend_list_friends_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_below="@id/Friend_search_friends_view"-->
-<!--        android:layout_marginBottom="30dp"-->
-<!--        android:paddingLeft="20dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/friends_list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="400dp"-->
-<!--        android:layout_below="@id/Friend_list_friends_view"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="Friend list will go down here."-->
-<!--        android:textSize="20sp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/testbill"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/friends_list"-->
-<!--        android:text="Bill"/>-->
-
 
     <LinearLayout
         android:id="@+id/friends_b"
@@ -91,7 +66,7 @@
         android:background="#EEEEEE">
 
         <Button
-            android:id="@+id/Friend_friends_button_6"
+            android:id="@+id/button_6"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
@@ -106,7 +81,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/Friend_friends_button_7"
+            android:id="@+id/button_7"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
@@ -114,7 +89,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_toRightOf="@id/Friend_friends_button_6"
+            android:layout_toRightOf="@id/button_6"
             android:background="@null"
             android:drawableTop="@drawable/icons8_friends"
             android:text="Friends"
@@ -123,7 +98,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/friends_button_8"
+            android:id="@+id/button_8"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
@@ -131,7 +106,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="24dp"
-            android:layout_toRightOf="@id/Friend_friends_button_7"
+            android:layout_toRightOf="@id/button_7"
             android:background="@null"
             android:drawableTop="@drawable/icons8_history"
             android:text="History"

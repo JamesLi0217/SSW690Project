@@ -1,205 +1,183 @@
 package com.example.autobill;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.job.JobInfo;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.example.autobill.model.Group;
 
-import com.google.gson.annotations.JsonAdapter;
-
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 
 public class Friends extends AppCompatActivity {
 
+    private Button mBtngroup, mBtnaddfriend, mBtnsideview;
 
-//    private TextView result;
-//    private Button mBtnFriend;
-    private Button mBtnHistory;
-    private Button mBtnGroup;
-    private Button mBtnBill;
-    public String date, title;
-    public RecyclerView recyclerview;
+    private RecyclerView recyclerView;
+    private String url = "http://10.0.2.2:8083/users/";
     public List<Map<String, Object>> list=new ArrayList<>();
+    public String date, date1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
-        DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.custom_divider));
-//        recyclerview.addItemDecoration(divider);
-        recyclerview = findViewById(R.id.friends_rv);
-        recyclerview.setLayoutManager(new LinearLayoutManager(Friends.this));
-        recyclerview.setAdapter(new LinearAdapter(Friends.this));
 
-//        mBtnBill = findViewById(R.id.testbill);
-//        mBtnBill.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Friends.this,NewBill.class);
-//                startActivity(intent);
-//            }
-//        });
+        recyclerView = findViewById(R.id.friends_rv);
+        okhttpInfo();
 
-        mBtnGroup = findViewById(R.id.Friend_friends_button_6);
-        mBtnGroup.setOnClickListener(new View.OnClickListener() {
+        mBtnsideview = findViewById(R.id.sideview);
+        mBtnsideview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Friends.this,SignedIn.class);
+                Intent intent = new Intent(Friends.this, SidesettingActivity.class);
                 startActivity(intent);
             }
         });
 
-        mBtnHistory = findViewById(R.id.friends_button_8);
-        mBtnHistory.setOnClickListener(new View.OnClickListener() {
+        mBtnaddfriend = findViewById(R.id.addfriend);
+        mBtnaddfriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Friends.this,History.class);
+                Intent intent = new Intent(Friends.this, addFriend.class);
                 startActivity(intent);
             }
         });
 
-
-
-//        recyclerview = findViewById(R.id.friends_rv);
-//        okhttpDate();
+        mBtngroup = findViewById(R.id.button_6);
+        mBtngroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Friends.this, SignedIn.class);
+                startActivity(intent);
+            }
+        });
     }
 
-//    class MyDecoration extends RecyclerView.ItemDecoration{
-//        @Override
-//        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//            super.getItemOffsets(outRect, view, parent, state);
-//            outRect.set(0, 0, 0, getResources().getDimensionPixelOffset(R.dimen.dividerHeight));
-//        }
-//    }
+    private void okhttpInfo() {
+        Log.i("TAG", "--OK--");
+        new Thread(new Runnable() {
 
-//    private void okhttpDate() {
-//        Log.i("TAG", "--ok--");
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                OkHttpClient client=new OkHttpClient();
-//                Request request=new Request.Builder().url("http://10.0.2.2:8085/group/name/3").build();
-//                try {
-//                    Response response=client.newCall(request).execute();
-//                    date = response.body().string();
-//
-//                    jsonJXDate(date);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//    }
-//
-//    private void jsonJXDate(String date) {
-//        if (date!=null) {
-//            try {
-//                JSONObject jsonObject = new JSONObject(date);
-//                JSONArray resultJsonArray = jsonObject.getJSONArray("todos");
-//                for (int i=0; i < resultJsonArray.length(); i ++){
-//                    jsonObject = resultJsonArray.getJSONObject(i);
-//                    Map<String, Object> map = new HashMap<>();
-//                    String title = jsonObject.getString("title");
-//                    map.put("title", title);
-//                    list.add(map);
-//                }
-//                Message msg=new Message();
-//                msg.what = 1;
-//                handler.sendMessage(msg);
-//            } catch(JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                String path = url + "1/Friends";
+                Request request = new Request
+                        .Builder()
+                        .url(path)
+                        .addHeader("Authorization", "James eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0Y0BnYW1pbC5jb20iLCJleHAiOjE1NzU0NjkwODF9.NREail4iRgHDunvjix-ve4wDCpr6ZdNM_e0KR4pUgavI2vYWYIOxh8AReo88Nh00sbtkpmA25DFJv7RhipS_Mg")
+                        .addHeader("Accept", "application/json")
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    date = response.body().string();
+                    jsonJXInfo(date);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
+    private void  jsonJXInfo(String date) {
+        if(date != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(date);
+                Integer [] friend_list = new Integer[jsonArray.length()];
+                for (int i=0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    int id = jsonObject.getInt("friendId");
+                    friend_list[i] = id;
+                }
+                for (int m=0; m <friend_list.length; m++){
+                    okhttpDate(friend_list[m]);
+                }
 
-//    public Handler handler=new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case 1:
-//
-//                    recy_item_Adapter friends_rv=new recy_item_Adapter(list, Friends.this);
-//                    recyclerview.setLayoutManager(new LinearLayoutManager(Friends.this));
-//                    recyclerview.setAdapter(friends_rv);
-//                    recyclerview.addItemDecoration(new DividerItemDecoration(Friends.this, DividerItemDecoration.VERTICAL));
-//                    break;
-//            }
-//        }
-//    };
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void okhttpDate(final int id) {
+        Log.i("TAG", "--OK--");
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                String path1 = "http://10.0.2.2:8083/users/" + id;
+                Request request = new Request
+                        .Builder()
+                        .url(path1)
+                        .addHeader("Authorization", "James eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0Y0BnYW1pbC5jb20iLCJleHAiOjE1NzU0NjkwODF9.NREail4iRgHDunvjix-ve4wDCpr6ZdNM_e0KR4pUgavI2vYWYIOxh8AReo88Nh00sbtkpmA25DFJv7RhipS_Mg")
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    date1 = response.body().string();
+                    jsonJXDate(date1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void  jsonJXDate(String date1) {
+        if(date != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(date1);
+                Map<String, Object> map = new HashMap<>();
+                String name = jsonObject.getString("userName");
+                map.put("Name", name);
+                list.add(map);
+                Message msg = new Message();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    FriendsAdapter friendsAdapter = new FriendsAdapter(list, Friends.this);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(Friends.this));
+                    recyclerView.setAdapter(friendsAdapter);
+                    break;
+            }
+        }
+    };
 }
 
-// JW的代码
-//        result = findViewById(R.id.friends_rv);
-//        mBtnFriend = findViewById(R.id.Friend_friends_button_7);
-//        mBtnFriend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getFriendList();
-//            }
-//        });
-//
-//
 
-//
-//    private void getFriendList() {
-//        OkHttpClient client = new OkHttpClient.Builder()
-//                .build();
-//        final Request request = new Request.Builder()
-//                .url("http://www.ssaurel.com/tmp/todos")//获取用户Friend的信息
-//                .get()
-//                .build();
-//        Call call = client.newCall(request);
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-//                result.setText(response.body().string());
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                Log.d("Result",e.getMessage());
-//            }
-//
-//        });
-//
-//    }
 
 
