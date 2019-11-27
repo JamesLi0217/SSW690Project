@@ -45,8 +45,7 @@ public class SignedIn extends AppCompatActivity {
         setContentView(R.layout.activity_signed_in);
         recyclerView = findViewById(R.id.group_rv);
         Intent intent = getIntent();
-        String daima = intent.getStringExtra("key");
-        System.out.println(daima);
+        final String daima = intent.getStringExtra("key");
         okhttpDate();
 
         mBtnSideView = findViewById(R.id.signedin_button);
@@ -64,6 +63,7 @@ public class SignedIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignedIn.this,Friends.class);
+                intent.putExtra("key",daima);
                 startActivity(intent);
             }
         });

@@ -47,6 +47,10 @@ public class Friends extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
 
+        Intent intent = getIntent();
+        final String daima1 = intent.getStringExtra("key");
+        System.out.println("12344555555" +daima1);
+
         recyclerView = findViewById(R.id.friends_rv);
         okhttpInfo();
 
