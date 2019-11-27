@@ -48,7 +48,7 @@ public class NewBill extends AppCompatActivity {
         mBtnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewBill.this,Friends.class);
+                Intent intent = new Intent(NewBill.this,BillInfoActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Bill Has Been Caneclled ", Toast.LENGTH_SHORT).show();
 
@@ -91,6 +91,7 @@ public class NewBill extends AppCompatActivity {
 
         Gson gson = new Gson();
         Bill bill = new Bill(21, billdate,billamount, billname, billdescription,billreceipt, userlist, billpayer);
+        //groupID
 
 
         String json = gson.toJson(bill);
