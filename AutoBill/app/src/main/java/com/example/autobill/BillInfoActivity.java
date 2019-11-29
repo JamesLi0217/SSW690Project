@@ -11,6 +11,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -40,6 +41,9 @@ public class BillInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_info);
+        Intent intent = getIntent();
+        final Integer pos = intent.getIntExtra("key",9999);
+
         recyclerView = findViewById(R.id.bill_info_rv);
 
         mCreateBill = findViewById(R.id.bill_info_add);
@@ -50,16 +54,53 @@ public class BillInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        okhttpInfo();
+        okhttpGroupInfo(pos);
     }
-    private void okhttpInfo() {
+
+    private void okhttpGroupInfo(final int pos) {
+        Log.i("TAG", "--OK--");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                String path1 = "http://10.0.2.2:8083/users/98971/AllGroups";
+                Request request = new Request
+                        .Builder()
+                        .url(path1)
+                        .addHeader("Authorization", "James eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0Y0BnYW1pbC5jb20iLCJleHAiOjE1NzU0NjkwODF9.NREail4iRgHDunvjix-ve4wDCpr6ZdNM_e0KR4pUgavI2vYWYIOxh8AReo88Nh00sbtkpmA25DFJv7RhipS_Mg")
+                        .addHeader("Accept", "application/json")
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    date1 = response.body().string();
+                    jsonJXGroupInfo(date1, pos);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void jsonJXGroupInfo(String date1, final int pos) {
+        if(date1 != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(date1);
+                JSONObject jsonObject = jsonArray.getJSONObject(pos);
+                int Id = jsonObject.getInt("groupId");
+                okhttpInfo(Id);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void okhttpInfo(final int Id) {
         Log.i("TAG", "--OK--");
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "12";//hardcode
+                String path = url + Id;//hardcode
                 Request request = new Request.Builder().url(path).build();
                 try {
                     Response response = client.newCall(request).execute();
@@ -78,14 +119,12 @@ public class BillInfoActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(date);
                 JSONArray billlist = jsonObject.getJSONArray("billsList");
                 String string =  billlist.toString();
-                System.out.println(string);
                 String str1 = string.substring(1);
                 String str2 = str1.substring(0, str1.length() - 1);
                 String [] stringArray = str2.split(",");
                 int [] bills = new int[stringArray.length];
                 for (int i=0; i <stringArray.length; i++) {
                     bills[i] = Integer.parseInt(stringArray[i]);
-                    System.out.println(bills[i]);
                 }
                 for (int m=0; m < bills.length; m++) {
                     okhttpDate(bills[m]);

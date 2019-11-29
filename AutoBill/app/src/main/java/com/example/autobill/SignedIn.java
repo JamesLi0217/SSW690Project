@@ -82,7 +82,6 @@ public class SignedIn extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignedIn.this, addgroup.class);
                 intent.putExtra("key", daima);
-                
                 startActivity(intent);
             }
         });
@@ -189,6 +188,9 @@ public class SignedIn extends AppCompatActivity {
                         @Override
                         public void onItemClick(View view, int position) {
                             Intent intent = new Intent(SignedIn.this, BillInfoActivity.class);
+                            String daima1 = intent.getStringExtra("key");
+                            intent.putExtra("ID", daima1);
+                            intent.putExtra("key", position);
                             startActivity(intent);
                         }
                     });
