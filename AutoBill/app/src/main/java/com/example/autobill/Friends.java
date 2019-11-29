@@ -63,6 +63,7 @@ public class Friends extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Friends.this, addFriend.class);
+                intent.putExtra("key", daima1);
                 startActivity(intent);
             }
         });
@@ -72,6 +73,7 @@ public class Friends extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Friends.this, SignedIn.class);
+                intent.putExtra("key", daima1);
                 startActivity(intent);
             }
         });

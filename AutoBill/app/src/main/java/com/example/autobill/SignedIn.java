@@ -81,6 +81,8 @@ public class SignedIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignedIn.this, addgroup.class);
+                intent.putExtra("key", daima);
+                
                 startActivity(intent);
             }
         });
