@@ -165,8 +165,8 @@ public class SignedIn extends AppCompatActivity {
                 Map<String, Object> map = new HashMap<>();
                 String name = jsonObject.getString("groupName");
                 map.put("Name", name);
-                JSONArray user = jsonObject.getJSONArray("usersList");
-                map.put("List", user);
+//                JSONArray user = jsonObject.getJSONArray("usersList");
+//                map.put("List", user);
                 list.add(map);
                 Message msg = new Message();
                 msg.what = 1;

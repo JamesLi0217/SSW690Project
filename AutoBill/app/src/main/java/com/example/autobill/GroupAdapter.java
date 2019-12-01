@@ -48,7 +48,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.group_iv.setText(String.valueOf(position + 1));
         holder.group_name.setText(list.get(position).get("Name").toString());
-        holder.group_user_list.setText(list.get(position).get("List").toString());
+//        holder.group_user_list.setText(list.get(position).get("List").toString());
 
         if(mOnItemClickListener != null) {
             holder.itemLayout.setOnClickListener(new View.OnClickListener() {

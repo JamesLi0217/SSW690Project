@@ -51,6 +51,7 @@ public class BillInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BillInfoActivity.this, NewBill.class);
+                intent.putExtra("key", pos);
                 startActivity(intent);
             }
         });
