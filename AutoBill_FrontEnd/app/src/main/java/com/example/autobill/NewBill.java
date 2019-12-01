@@ -44,11 +44,15 @@ public class NewBill extends AppCompatActivity {
         BillDecription = findViewById(R.id.bill_desciption);
         BillParticipant = findViewById(R.id.bill_participant);
         BillPayer = findViewById(R.id.bill_payer);
+
+        Intent intent = getIntent();
+        final Integer pos = intent.getIntExtra("key",9999);
         mBtnCancle =findViewById(R.id.bill_cancle);
         mBtnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewBill.this,Friends.class);
+                Intent intent = new Intent(NewBill.this,BillInfoActivity.class);
+                intent.putExtra("key", pos);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Bill Has Been Caneclled ", Toast.LENGTH_SHORT).show();
 
@@ -91,6 +95,7 @@ public class NewBill extends AppCompatActivity {
 
         Gson gson = new Gson();
         Bill bill = new Bill(21, billdate,billamount, billname, billdescription,billreceipt, userlist, billpayer);
+        //groupID
 
 
         String json = gson.toJson(bill);

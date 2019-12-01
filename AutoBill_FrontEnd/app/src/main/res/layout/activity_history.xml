@@ -27,6 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <Button
+        android:id="@+id/history2"
+        android:layout_below="@id/getHistory"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Histroy"
+        android:textAllCaps="false"/>
+    <Button
         android:id="@+id/test_listview"
         android:layout_width="match_parent"
         android:layout_height="50dp"

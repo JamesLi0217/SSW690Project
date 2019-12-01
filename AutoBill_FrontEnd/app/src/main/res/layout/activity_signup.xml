@@ -39,29 +39,29 @@
         android:drawableLeft="@drawable/icon_username"/>
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/startdate"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_below="@id/username2"
         android:background="@drawable/input"
-        android:hint="Password"
+        android:hint="Start Date"
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:drawablePadding="20dp"
         android:textSize="20sp"
         android:maxLines="1"
-        android:inputType="textPassword"
-        android:drawableLeft="@drawable/icon_password"/>
+        android:inputType="number"
+        android:drawableLeft="@drawable/icon_add"/>
 
     <EditText
         android:id="@+id/password3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/password2"
+        android:layout_below="@id/startdate"
         android:background="@drawable/input"
-        android:hint="Confirm password"
+        android:hint="Password"
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:drawablePadding="20dp"
