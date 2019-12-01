@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,14 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.autobill.model.Group;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,10 +45,12 @@ public class Friends extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String daima1 = intent.getStringExtra("key");
-        System.out.println("12344555555" +daima1);
+
+        Intent intent1 = getIntent();
+        final String G_daima1 = intent.getStringExtra("key");
 
         recyclerView = findViewById(R.id.friends_rv);
-        okhttpInfo();
+        okhttpInfo(daima1);
 
         mBtnsideview = findViewById(R.id.sideview);
         mBtnsideview.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +66,7 @@ public class Friends extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Friends.this, addFriend.class);
+                intent.putExtra("key",daima1);
                 startActivity(intent);
             }
         });
@@ -77,19 +76,20 @@ public class Friends extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Friends.this, SignedIn.class);
+                intent.putExtra("key",daima1);
                 startActivity(intent);
             }
         });
     }
 
-    private void okhttpInfo() {
+    private void okhttpInfo(final String daima1) {
         Log.i("TAG", "--OK--");
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "1/Friends";//UserID
+                String path = url + daima1 + "/Friends";//UserID
                 Request request = new Request
                         .Builder()
                         .url(path)

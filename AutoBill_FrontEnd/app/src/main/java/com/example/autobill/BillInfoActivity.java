@@ -34,6 +34,7 @@ public class BillInfoActivity extends AppCompatActivity {
     public List<Map<String, Object>> list=new ArrayList<>();
     public String date, date1;
     private Button mCreateBill;
+    private Button mBtnback;
 
 
     @Override
@@ -59,8 +60,8 @@ public class BillInfoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "12";//hardcode
-                Request request = new Request.Builder().url(path).build();
+                String path = url + "36";//hardcode groupID
+                Request request = new Request.Builder().url(path).get().build();
                 try {
                     Response response = client.newCall(request).execute();
                     date = response.body().string();
@@ -85,7 +86,6 @@ public class BillInfoActivity extends AppCompatActivity {
                 int [] bills = new int[stringArray.length];
                 for (int i=0; i <stringArray.length; i++) {
                     bills[i] = Integer.parseInt(stringArray[i]);
-                    System.out.println(bills[i]);
                 }
                 for (int m=0; m < bills.length; m++) {
                     okhttpDate(bills[m]);
@@ -106,7 +106,7 @@ public class BillInfoActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 String path1 = "http://10.0.2.2:8085/bill/" + billid;
-                Request request = new Request.Builder().url(path1).build();
+                Request request = new Request.Builder().url(path1).get().build();
                 try {
                     Response response = client.newCall(request).execute();
                     date1 = response.body().string();

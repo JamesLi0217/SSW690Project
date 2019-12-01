@@ -33,10 +33,9 @@ public class SignedIn extends AppCompatActivity {
     private Button mBtnHistory;
     private Button mBtnCreateGroup;
     private RecyclerView recyclerView;
-    private GroupAdapter mAdapter;
     private String url = "http://10.0.2.2:8084/group/";
     public List<Map<String, Object>> list=new ArrayList<>();
-    public String date;
+    public String date, date1;
 
 
     @Override
@@ -46,7 +45,13 @@ public class SignedIn extends AppCompatActivity {
         recyclerView = findViewById(R.id.group_rv);
         Intent intent = getIntent();
         final String daima = intent.getStringExtra("key");
-        okhttpDate();
+        okhttpInfo(daima);
+
+        Intent intent1 = getIntent();
+        final String F_daima1 = intent1.getStringExtra("key");
+
+        Intent intent2 = getIntent();
+        final String G_daima = intent.getStringExtra("key");
 
         mBtnSideView = findViewById(R.id.signedin_button);
         mBtnSideView.setOnClickListener(new View.OnClickListener() {
@@ -82,21 +87,72 @@ public class SignedIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignedIn.this, addgroup.class);
+                intent.putExtra("key",daima);
                 startActivity(intent);
             }
         });
 
     }
 
-    private void okhttpDate() {
+
+    private void okhttpInfo(final String daima) {
+        Log.i("TAG", "--OK--");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                String path1 = "http://10.0.2.2:8083/users/" + daima + "/AllGroups";
+                Request request = new Request
+                        .Builder()
+                        .url(path1)
+                        .addHeader("Authorization", "James eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0Y0BnYW1pbC5jb20iLCJleHAiOjE1NzU0NjkwODF9.NREail4iRgHDunvjix-ve4wDCpr6ZdNM_e0KR4pUgavI2vYWYIOxh8AReo88Nh00sbtkpmA25DFJv7RhipS_Mg")
+                        .addHeader("Accept", "application/json")
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    date1 = response.body().string();
+                    jsonJXInfo(date1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void jsonJXInfo(String date1) {
+        if(date1 != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(date1);
+                Integer [] group_list = new Integer[jsonArray.length()];
+                for (int i=0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    int Id = jsonObject.getInt("groupId");
+                    group_list[i] = Id;
+                }
+                for (int m=0; m <group_list.length; m++){
+                    System.out.println(group_list[m]);
+                    okhttpDate(group_list[m]);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void okhttpDate(final int Id) {
         Log.i("TAG", "--OK--");
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String path = url + "13";//userID
-                Request request = new Request.Builder().url(path).build();
+                String path = url + Id;
+                Request request = new Request
+                        .Builder()
+                        .url(path)
+                        .addHeader("Authorization", "James eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0Y0BnYW1pbC5jb20iLCJleHAiOjE1NzU0NjkwODF9.NREail4iRgHDunvjix-ve4wDCpr6ZdNM_e0KR4pUgavI2vYWYIOxh8AReo88Nh00sbtkpmA25DFJv7RhipS_Mg")
+                        .build();
                 try {
                     Response response = client.newCall(request).execute();
                     date = response.body().string();
@@ -137,8 +193,24 @@ public class SignedIn extends AppCompatActivity {
                     groupAdapter.setOnItemClickListener(new GroupAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(SignedIn.this, BillInfoActivity.class);
-                            startActivity(intent);
+                            switch (position){
+                                case 0 :
+                                    startActivity(new Intent(SignedIn.this,BillInfoActivity.class));
+
+                                    break;
+
+                                case 1 :
+                                    startActivity(new Intent(SignedIn.this,Bill1.class));
+                                    break;
+
+                                case 2 :
+                                    startActivity(new Intent(SignedIn.this,Bill2.class));
+                                    break;
+
+                                case 3 :
+                                    startActivity(new Intent(SignedIn.this,Bill3.class));
+                                    break;
+                            }
                         }
                     });
                     recyclerView.setAdapter(groupAdapter);

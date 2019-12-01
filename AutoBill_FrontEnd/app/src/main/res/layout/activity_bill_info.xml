@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".BillInfoActivity">
 
+    <Button
+        android:id="@+id/back_info"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/icon_back"
+        android:background="@null"/>
+
     <TextView
         android:id="@+id/bill_info_total"
         android:layout_width="215dp"
         android:layout_height="50dp"
+        android:layout_below="@id/back_info"
         android:text="Total:"
         android:paddingLeft="20dp"
         android:textSize="40sp"
@@ -19,6 +27,7 @@
         android:id="@+id/bill_info_money"
         android:layout_width="220dp"
         android:layout_height="50dp"
+        android:layout_below="@id/back_info"
         android:layout_toRightOf="@id/bill_info_total"
         android:background="#EEEEFF"/>
 

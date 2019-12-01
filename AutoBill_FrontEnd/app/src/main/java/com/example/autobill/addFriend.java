@@ -38,6 +38,8 @@ public class addFriend extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friend);
+        Intent intent2 = getIntent();
+        final String F_daima = intent2.getStringExtra("key");
 
         etUsers = findViewById(R.id.users);
         addCancle = findViewById(R.id.friend_cancle);
@@ -48,6 +50,7 @@ public class addFriend extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(addFriend.this, com.example.autobill.Friends.class);
+                intent.putExtra("key",F_daima);
                 startActivity(intent);
                 Toast.makeText(addFriend.this,"Adding friedns has been cancled",Toast.LENGTH_LONG).show();
             }

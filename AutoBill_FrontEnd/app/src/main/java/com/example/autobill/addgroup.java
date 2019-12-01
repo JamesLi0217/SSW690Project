@@ -36,6 +36,8 @@ public class addgroup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addgroup);
+        Intent intent = getIntent();
+        final String daima_group = intent.getStringExtra("key");
 
         groupname = findViewById(R.id.groupName);
         groupuser = findViewById(R.id.userlist);
@@ -47,6 +49,7 @@ public class addgroup extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(addgroup.this,SignedIn.class);
+                intent.putExtra("key",daima_group);
                 startActivity(intent);
             }
         });
